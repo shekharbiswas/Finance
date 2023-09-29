@@ -1,5 +1,4 @@
 
-pip install -r requirements.txt
 
 import time  # to simulate a real time data, time loop
 
