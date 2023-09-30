@@ -22,7 +22,7 @@ with col1:
     
     
     info1 = pd.read_excel('nse_data.xlsx')
-    info1 = info.sort_values(by = 'Symbol')
+    info1 = info1.sort_values(by = 'Symbol')
 
     #info['Symbol'] = info['Symbol'] + '.NS'
 
