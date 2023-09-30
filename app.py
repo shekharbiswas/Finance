@@ -21,7 +21,10 @@ col1, col2 = st.columns(2)
 with col1:
     
     
-    info = pd.read_csv('nasdaq.csv')
+    info = pd.read_excel('nse_data.xlsx')
+    info = info.sort_values(by = 'Symbol')
+
+    info['Symbol'] = info['Symbol'] + '.NS'
 
 
 
@@ -30,8 +33,8 @@ with col1:
 
 # top-level filters
     x = pd.unique(info["Symbol"])
-    x.sort()
-    code = st.selectbox("Select the Stock CODE :sunglasses:", x)
+    #x.sort()
+    code = st.selectbox("Select the NSE Stock CODE :sunglasses:", x)
 
 # creating a single-element container
     placeholder = st.empty()
@@ -113,7 +116,7 @@ with col2:
 # top-level filters
     x = pd.unique(info["Symbol"])
     #x.sort()
-    code = st.selectbox("Select the Stock CODE :sunglasses:", x)
+    code = st.selectbox("Select the NASDAQ Stock CODE :sunglasses:", x)
 
 # creating a single-element container
     placeholder = st.empty()
