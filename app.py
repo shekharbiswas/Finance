@@ -102,7 +102,7 @@ with col1:
     t = info1.loc[info1['Symbol'] == code, 'Company Name']
     #st.write(t['Company Name'])
     
-    ax.set_title(t['Company Name'])
+    ax.set_title(t)
 
     #ax.set_title(t, fontdict={'fontsize': 8, 'fontweight': 'medium'})
 
@@ -192,7 +192,7 @@ with col2:
     t = info.loc[info['Symbol'] == code, 'Description']
     #st.write(t['Company Name'])
     
-    ax.set_title(t['Description'])
+    ax.set_title(t)
 
 
     st.pyplot(fig)
