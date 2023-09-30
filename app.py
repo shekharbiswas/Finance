@@ -25,7 +25,7 @@ info = pd.read_csv('nasdaq.csv')
 st.title("Real-Time Stock Price")
 
 # top-level filters
-code = st.selectbox("Select the Job", pd.unique(info["Symbol"]))
+code = st.selectbox("Select the Job :sunglasses:", pd.unique(info["Symbol"]))
 
 # creating a single-element container
 placeholder = st.empty()
