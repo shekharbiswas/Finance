@@ -100,6 +100,8 @@ with col1:
     ax.hlines(y=0, xmin=df['Date'][0], xmax=df['Date'][-1],linewidth=2, color='r')
 
     t = info1.loc[info1['Symbol'] == code, 'Company Name']
+    st.write(t)
+    
     ax.set_title(t)
 
     #ax.set_title(t, fontdict={'fontsize': 8, 'fontweight': 'medium'})
