@@ -12,7 +12,7 @@ import streamlit as st  # 🎈 data web app development
 
 
 st.set_page_config(
-    page_title="Real-Time Stock NASDAQ 100 Price",
+    page_title="Real-Time Stock Price",
     page_icon="✅",
     layout="wide")
 
@@ -27,7 +27,7 @@ with col2:
 
 
 # dashboard title
-    st.title("Real-Time Stock Price")
+    st.title("Real-Time Stock NASDAQ")
 
 # top-level filters
     x = pd.unique(info["Symbol"])
