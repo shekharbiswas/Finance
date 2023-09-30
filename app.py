@@ -189,7 +189,7 @@ with col2:
 
     ax.hlines(y=0, xmin=df['Date'][0], xmax=df['Date'][-1],linewidth=2, color='r')
 
-    t = info.loc[info1['Symbol'] == code, 'Description']
+    t = info.loc[info['Symbol'] == code, 'Description']
     #st.write(t['Company Name'])
     
     ax.set_title(t['Description'])
