@@ -43,7 +43,7 @@ for seconds in range(200):
     df['10D'] = df['Adj Close'].shift(10)    # chnage 10, 20 days
     df['change'] = round((df['Adj Close'].diff() / df['Adj Close'].abs().shift(1))*100,2)
     df['price_vol'] = (df['Adj Close']/ df['Volume'])*10**7*2
-    df = df.drop(columns = ['Open', 'High', 'Low', 'Close'])
+    #df = df.drop(columns = ['Open', 'High', 'Low', 'Close'])
     df['w_5'] = round((df['Adj Close']/ df['5D'] -1)*100,2)
     df['w_10'] = round((df['Adj Close']/ df['10D'] -1)*100,2)
     df['p_10'] = df['Adj Close'] - df['10D']
