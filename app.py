@@ -29,7 +29,7 @@ with col1:
 
 
 # dashboard title
-    st.title("Real-Time Stock NASDAQ")
+    st.title("Real-Time Stock NSE")
 
 # top-level filters
     x = pd.unique(info1["Symbol"])
@@ -100,8 +100,9 @@ with col1:
     ax.hlines(y=0, xmin=df['Date'][0], xmax=df['Date'][-1],linewidth=2, color='r')
 
     t = info1.loc[info1['Symbol'] == code, 'Company Name']
+    ax.set_title(t)
 
-    ax.set_title(t, fontdict={'fontsize': 8, 'fontweight': 'medium'})
+    #ax.set_title(t, fontdict={'fontsize': 8, 'fontweight': 'medium'})
 
 
 
