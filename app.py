@@ -82,9 +82,14 @@ for seconds in range(200):
     df['v_10'] = df['v_10']/ v_10_range
     df['p_10'] = df['p_10']/ p_10_range
     df.index = df.Date
-    df['p_10'].plot()
-    df['v_10'].plot()
-    plt.axhline(y=0, color='r', linestyle='-')
-    plt.title(code)
+    
+    fig, ax = plt.subplots()
+    
+    ax.plot(df['Date'], df['p_10'])
+    ax.plot(df['Date'], df['v_10'])
 
+    ax.hlines(y=0, xmin=df['Date'][0], xmax=df['Date'][-1],linewidth=2, color='r')
+    st.pyplot(fig)
+
+    
     time.sleep(3)
