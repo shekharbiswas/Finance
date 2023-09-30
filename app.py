@@ -28,7 +28,9 @@ with col2:
     st.title("Real-Time Stock Price")
 
 # top-level filters
-    code = st.selectbox("Select the Job :sunglasses:", pd.unique(info["Symbol"]))
+    x = pd.unique(info["Symbol"])
+    x.sort()
+    code = st.selectbox("Select the Job :sunglasses:", x)
 
 # creating a single-element container
     placeholder = st.empty()
