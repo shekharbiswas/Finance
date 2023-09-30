@@ -21,8 +21,8 @@ col1, col2 = st.columns(2)
 with col1:
     
     
-    info = pd.read_excel('nse_data.xlsx')
-    info = info.sort_values(by = 'Symbol')
+    info1 = pd.read_excel('nse_data.xlsx')
+    info1 = info.sort_values(by = 'Symbol')
 
     #info['Symbol'] = info['Symbol'] + '.NS'
 
@@ -32,7 +32,7 @@ with col1:
     st.title("Real-Time Stock NASDAQ")
 
 # top-level filters
-    x = pd.unique(info["Symbol"])
+    x = pd.unique(info1["Symbol"])
     #x.sort()
     code = st.selectbox("Select the NSE Stock CODE :sunglasses:", x)
 
@@ -40,8 +40,8 @@ with col1:
     placeholder = st.empty()
 
 # dataframe filter
-    code = code + '.NS'
-    data = yf.download(code,'2023-01-01','2023-12-31')
+    #code = code + '.NS'
+    data = yf.download(code + '.NS','2023-01-01','2023-12-31')
     data = data.reset_index()
     df = data
 
@@ -98,6 +98,11 @@ with col1:
     ax.plot(df['Date'], df['v_10'])
 
     ax.hlines(y=0, xmin=df['Date'][0], xmax=df['Date'][-1],linewidth=2, color='r')
+
+    t = info1.loc[info1['Symbol'] == code, 'Company Name']
+
+    ax.set_title(t, fontdict={'fontsize': 8, 'fontweight': 'medium'})
+
 
 
     st.pyplot(fig)
