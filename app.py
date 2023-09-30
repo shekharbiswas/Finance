@@ -32,7 +32,7 @@ with col2:
 # top-level filters
     x = pd.unique(info["Symbol"])
     x.sort()
-    code = st.selectbox("Select the Job :sunglasses:", x)
+    code = st.selectbox("Select the Stock CODE :sunglasses:", x)
 
 # creating a single-element container
     placeholder = st.empty()
