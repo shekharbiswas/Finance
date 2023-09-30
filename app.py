@@ -25,7 +25,7 @@ with col2:
 
 
 # dashboard title
-    st.title("Real-Time Stock Price")
+    st.title("Real-Time NASDAQ 100 Stock Price")
 
 # top-level filters
     x = pd.unique(info["Symbol"])
