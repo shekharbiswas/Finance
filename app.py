@@ -10,22 +10,23 @@ import pandas as pd  # read csv, df manipulation
 import plotly.express as px  # interactive charts
 import streamlit as st  # 🎈 data web app development
 
-st.set_page_config(
-    page_title="Real-Time Stock Price",
-    page_icon="✅",
-    layout="wide",
-)
+
 
 col1, col2 = st.columns(2)
 
 
 with col2:
+    st.set_page_config(
+    page_title="Real-Time Stock NASDAQ 100 Price",
+    page_icon="✅",
+    layout="wide")
+    
     info = pd.read_csv('nasdaq.csv')
 
 
 
 # dashboard title
-    st.title("Real-Time NASDAQ 100 Stock Price")
+    st.title("Real-Time Stock Price")
 
 # top-level filters
     x = pd.unique(info["Symbol"])
