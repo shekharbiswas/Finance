@@ -11,15 +11,16 @@ import plotly.express as px  # interactive charts
 import streamlit as st  # 🎈 data web app development
 
 
+st.set_page_config(
+    page_title="Real-Time Stock NASDAQ 100 Price",
+    page_icon="✅",
+    layout="wide")
 
 col1, col2 = st.columns(2)
 
 
 with col2:
-    st.set_page_config(
-    page_title="Real-Time Stock NASDAQ 100 Price",
-    page_icon="✅",
-    layout="wide")
+    
     
     info = pd.read_csv('nasdaq.csv')
 
