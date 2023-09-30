@@ -24,7 +24,7 @@ with col1:
     info = pd.read_excel('nse_data.xlsx')
     info = info.sort_values(by = 'Symbol')
 
-    info['Symbol'] = info['Symbol'] + '.NS'
+    #info['Symbol'] = info['Symbol'] + '.NS'
 
 
 
@@ -40,6 +40,7 @@ with col1:
     placeholder = st.empty()
 
 # dataframe filter
+    code = code + '.NS'
     data = yf.download(code,'2023-01-01','2023-12-31')
     data = data.reset_index()
     df = data
