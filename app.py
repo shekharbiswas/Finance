@@ -82,13 +82,17 @@ p_10_range = df['p_10'].max() - df['p_10'].min()
 df['v_10'] = df['v_10']/ v_10_range
 df['p_10'] = df['p_10']/ p_10_range
 df.index = df.Date
-    
-fig, ax = plt.subplots(figsize=(8, 6))
-    
-ax.plot(df['Date'], df['p_10'])
-ax.plot(df['Date'], df['v_10'])
 
-ax.hlines(y=0, xmin=df['Date'][0], xmax=df['Date'][-1],linewidth=2, color='r')
-st.pyplot(fig)
+col1, col2 = st.columns(2)
+
+with col1:
+    fig, ax = plt.subplots(figsize=(8, 6))
+    ax.plot(df['Date'], df['p_10'])
+    ax.plot(df['Date'], df['v_10'])
+
+    ax.hlines(y=0, xmin=df['Date'][0], xmax=df['Date'][-1],linewidth=2, color='r')
+
+
+    st.pyplot(fig)
 
 
