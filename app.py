@@ -9,7 +9,7 @@ import numpy as np  # np mean, np random
 import pandas as pd  # read csv, df manipulation
 import plotly.express as px  # interactive charts
 import streamlit as st  # 🎈 data web app development
-
+import datetime
 
 st.set_page_config(
     page_title="Real-Time Stock Price",
@@ -19,6 +19,23 @@ st.set_page_config(
 col1, col2 = st.columns(2)
 
 with col1:
+
+
+    today = datetime.datetime.now()
+    next_year = today.year + 1
+    jan_1 = datetime.date(next_year, 1, 1)
+    dec_31 = datetime.date(next_year, 12, 31)
+
+    d = st.date_input(
+    "Select your vacation for next year",
+    (jan_1, datetime.date(next_year, 1, 7)),
+    jan_1,
+    dec_31,
+    format="MM.DD.YYYY",
+    )
+    
+    d
+
     
     
     info1 = pd.read_excel('nse_data.xlsx')
