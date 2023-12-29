@@ -9,5 +9,4 @@ The APP is in progress.
 - This app would not serve the purpose of AI traders.
 - The APP will levearge the power of LLM at some point.
 - It will capture the company outlook and other imp factors.
-- Maths is just 10% of the APP.
-  
+
