@@ -136,8 +136,13 @@ with col2:
 
         cdf = pd.merge(cdf, nifty)
 
+        NIFTY_IDX =  cdf['NIFTY']
+        ALPHA_IDX = cdf['Alpha']
+
         cdf['Alpha'] = round((100 / cdf['Alpha'][0])* cdf['Alpha'],1)
         cdf['NIFTY'] = round((100 / cdf['NIFTY'][0])* cdf['NIFTY'], 1)
+
+        
 
 
         #st.write(cdf['Alpha'][len(cdf) - 1])
@@ -152,12 +157,15 @@ with col2:
 
         cdf.columns = ['Date', 'INDEX', 'PRICE']
 
+        cdf.loc[cdf['INDEX'] == 'NIFTY', 'NIFTY_IDX'] = NIFTY_IDX
+        cdf.loc[cdf['INDEX'] == 'NIFTY', 'ALPHA_IDX'] = ALPHA_IDX
+
         chosen = nse_df.loc[nse_df['Symbol'].isin(list(chosen.index)),'Company Name'].reset_index(drop = True)
         #st.header(' ## Chosen Stocks ' )
         st.table(chosen)
 
 
-        fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['gray', 'blue'])
+        fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['gray', 'blue'], hover_data=["NIFTY_IDX", "ALPHA_IDX"])
         #fig.show()  
         fig.update_layout(height=500)
         
