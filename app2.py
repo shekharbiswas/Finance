@@ -105,19 +105,26 @@ with col2:
 
         data = data.rename(columns = {'diff' : '% Increase'})
 
-        st.dataframe(data[['index', '% Increase']])
+        tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
 
+        
         st.write("\n \n ")
 
-        
-        fig = px.scatter(data, x=data.columns[-2], y='% Increase',
-	         size="% Increase", size_max=60, text="index", color = '% Increase')
-        
-        fig.update_layout(height=700)
-        fig.update_traces( hovertemplate=None)
-        fig.update_layout(hovermode="x")
-        
-        st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
+        with tab1:
+
+            fig = px.scatter(data, x=data.columns[-2], y='% Increase',
+	             size="% Increase", size_max=60, text="index", color = '% Increase')
+
+            fig.update_layout(height=700)
+            fig.update_traces( hovertemplate=None)
+            fig.update_layout(hovermode="x")
+
+            st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
+
+        with tab2:
+            st.dataframe(data[['index', '% Increase']])
+
+
 
 
 
