@@ -52,76 +52,80 @@ with col2:
 
     #s_date = datetime.datetime.now() - datetime.timedelta(days=365)
     
-    if (d[0] and d[1]):
-        s_date = d[0].strftime('%Y-%m-%d')
-        e_date = d[1].strftime('%Y-%m-%d')
+    try:
+        if (d[0] and d[1]):
+            s_date = d[0].strftime('%Y-%m-%d')
+            e_date = d[1].strftime('%Y-%m-%d')
 
     #st.write(s_date , e_date)
 
-        if (d[1] - d[0]) >= datetime.timedelta(days=4) :
+            if (d[1] - d[0]) >= datetime.timedelta(days=4) :
 
-            #st.write('7 days')
-            
-            with st.spinner('Loading data...'):
-                data = yf.download(
-                    tickers = tickers,
-                    start=s_date,
-                    #end=date.today().replace(day=2),
-                    end = e_date,
-                    interval = "1d",
-                    group_by = 'ticker'
-                )
+                #st.write('7 days')
 
-            # Monthly shows data of last day of month
+                with st.spinner('Loading data...'):
+                    data = yf.download(
+                        tickers = tickers,
+                        start=s_date,
+                        #end=date.today().replace(day=2),
+                        end = e_date,
+                        interval = "1d",
+                        group_by = 'ticker'
+                    )
 
-            data = data[[col for col in data.columns if col[1] == 'Adj Close' ]]
-            #data = data.reset_index() 
-            data.columns = data.columns.droplevel(1)
-            data = data.T
+                # Monthly shows data of last day of month
 
-            col_backup = data.columns
+                data = data[[col for col in data.columns if col[1] == 'Adj Close' ]]
+                #data = data.reset_index() 
+                data.columns = data.columns.droplevel(1)
+                data = data.T
 
-            data.columns = list(pd.Series(data.columns).apply(lambda x :  x.strftime('%Y-%m-%d')))
+                col_backup = data.columns
 
-            drop_stocks = list(data.index[data.isna().sum(axis = 1) > 10])
-            data = data.drop(index=drop_stocks)
+                data.columns = list(pd.Series(data.columns).apply(lambda x :  x.strftime('%Y-%m-%d')))
 
-
-            data['diff'] = round(100*(data[data.columns[-1]] / data[data.columns[0]] - 1))
-            data = data.sort_values(by = 'diff', ascending= False)
-
-            data = data.dropna()
-
-            data = data.reset_index()
+                drop_stocks = list(data.index[data.isna().sum(axis = 1) > 10])
+                data = data.drop(index=drop_stocks)
 
 
+                data['diff'] = round(100*(data[data.columns[-1]] / data[data.columns[0]] - 1))
+                data = data.sort_values(by = 'diff', ascending= False)
+
+                data = data.dropna()
+
+                data = data.reset_index()
 
 
-            data['diff'] = data['diff'].astype(int)
-
-            data = data.head(10)
-            data['index'] = data['index'].str.split('.', n = 1, expand=True)[0]
-
-            data = data.rename(columns = {'diff' : '% Increase'})
-
-            tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
 
 
-            st.write("\n \n ")
+                data['diff'] = data['diff'].astype(int)
 
-            with tab1:
+                data = data.head(10)
+                data['index'] = data['index'].str.split('.', n = 1, expand=True)[0]
 
-                fig = px.scatter(data, x=data.columns[-2], y='% Increase',
-	                 size="% Increase", size_max=60, text="index", color = '% Increase', log_x=True)
+                data = data.rename(columns = {'diff' : '% Increase'})
 
-                fig.update_layout(height=700)
-                fig.update_traces( hovertemplate=None)
-                fig.update_layout(hovermode="x")
+                tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
 
-                st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
 
-            with tab2:
-                st.dataframe(data[['index', '% Increase']])
+                st.write("\n \n ")
+
+                with tab1:
+
+                    fig = px.scatter(data, x=data.columns[-2], y='% Increase',
+	                     size="% Increase", size_max=60, text="index", color = '% Increase', log_x=True)
+
+                    fig.update_layout(height=700)
+                    fig.update_traces( hovertemplate=None)
+                    fig.update_layout(hovermode="x")
+
+                    st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
+
+                with tab2:
+                    st.dataframe(data[['index', '% Increase']])
+
+    except:
+        pass
 
 
 
