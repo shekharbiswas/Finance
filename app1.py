@@ -23,7 +23,7 @@ with col2:
     nse_df = nse_df.head(100)
     
     nse_df['Symbol'] = [str(s) + '.NS' for s in nse_df['Symbol']]
-    tickers = list(pd.unique(nse_df['Symbol']))
+    #tickers = list(pd.unique(nse_df['Symbol']))
 
     #nse_df = nse_df.sort_values(by = 'Symbol')
 
@@ -50,7 +50,14 @@ with col2:
     #code4 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code4')
     #code5 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code5')
 
+        #st.dataframe(data)
+    x = list(pd.unique(nse_df['Symbol'] ))
+    #st.write(x)
+    
+    codes = st.multiselect("Select the NSE Stock CODE :sunglasses:", x)
+    st.write('You selected:', list(codes))
 
+    chosen_stocks = list(codes)
 
 
     s_date = datetime.datetime.now() - datetime.timedelta(days=365)
@@ -66,9 +73,17 @@ with col2:
     #chosen_stocks = ['SBIN.NS', 'SIEMENS.NS', 'GODREJCP.NS', 'BAJFINANCE.NS', 'KOTAKBANK.NS']
     #st.write(chosen_stocks)
 
-    data = yf.download(
-                tickers = tickers,
-                #tickers= chosen_stocks,
+    
+
+
+
+
+
+    if len(chosen_stocks) >= 3:
+    #tickers = list(nse_df['Symbol'])[0:50]
+        data = yf.download(
+                #tickers = tickers,
+                tickers= chosen_stocks,
                 start=s_date,
                 #end=date.today().replace(day=2),
                 end = e_date,
@@ -79,15 +94,15 @@ with col2:
         # Monthly shows data of last day of month
         # 
 
-    data = data[[col for col in data.columns if col[1] == 'Adj Close' ]]
+        data = data[[col for col in data.columns if col[1] == 'Adj Close' ]]
         #data = data.reset_index() 
         #st.dataframe(data)
-    data.columns = data.columns.droplevel(1)
-    data = data.T
+        data.columns = data.columns.droplevel(1)
+        data = data.T
 
-    col_backup = data.columns
+        col_backup = data.columns
 
-    data.columns = list(pd.Series(data.columns).apply(lambda x :  x.strftime('%Y-%m-%d')))
+        data.columns = list(pd.Series(data.columns).apply(lambda x :  x.strftime('%Y-%m-%d')))
 
         ########## Mapping ###################
         #  120 : 10Y
@@ -99,30 +114,11 @@ with col2:
         ##
         # drop stocks with lot of NAs
 
-    drop_stocks = list(data.index[data.isna().sum(axis = 1) > 10])
-    data = data.drop(index=drop_stocks)
+        drop_stocks = list(data.index[data.isna().sum(axis = 1) > 10])
+        data = data.drop(index=drop_stocks)
         #data
 
-    #st.dataframe(data)
-    x = list(pd.unique(data.index))
-    #st.write(x)
-    
-    codes = st.multiselect("Select the NSE Stock CODE :sunglasses:", x)
-    st.write('You selected:', list(codes))
-
-    chosen_stocks = list(codes)
-
-
-
-
-
-    if len(chosen_stocks) >= 3:
-    #tickers = list(nse_df['Symbol'])[0:50]
-        
-
-    
-
-
+        x = list(set(data.index))
         
 
         cdf = data.loc[chosen_stocks, :]
