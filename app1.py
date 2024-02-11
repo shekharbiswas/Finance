@@ -170,7 +170,7 @@ with col2:
         cdf.loc[cdf['INDEX'] == 'NIFTY', 'IDX'] = NIFTY_IDX
         cdf.loc[cdf['INDEX'] == 'Alpha', 'IDX'] = ALPHA_IDX
 
-        st.dataframe(cdf)
+        #st.dataframe(cdf)
 
         chosen = nse_df.loc[nse_df['Symbol'].isin(list(chosen.index)),'Company Name'].reset_index(drop = True)
         #st.header(' ## Chosen Stocks ' )
