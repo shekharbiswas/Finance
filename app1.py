@@ -16,7 +16,7 @@ st.set_page_config(
     page_icon="✅",
     layout="wide")
 
-col1 = st.columns(1)
+col1, col2 = st.columns(2)
 
 with col1:
 
