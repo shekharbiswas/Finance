@@ -45,7 +45,8 @@ with col2:
     )
     
 
-    st.write(d)
+    st.write(d[0])
+    st.write(d[1])
 
 
     s_date = datetime.datetime.now() - datetime.timedelta(days=365)
