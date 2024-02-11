@@ -136,13 +136,14 @@ with col2:
 
         cdf = pd.merge(cdf, nifty)
 
-        st.dataframe(cdf)
+        #st.dataframe(cdf)
 
-        NIFTY_IDX =  cdf['NIFTY']
+        NIFTY_IDX =  list(round(cdf['NIFTY']))
+        #st.write(NIFTY_IDX)
+        ALPHA_IDX = round(cdf['Alpha'])
 
-        st.write(NIFTY_IDX)
+
         
-        ALPHA_IDX = cdf['Alpha']
 
         cdf['Alpha'] = round((100 / cdf['Alpha'][0])* cdf['Alpha'],1)
         cdf['NIFTY'] = round((100 / cdf['NIFTY'][0])* cdf['NIFTY'], 1)
