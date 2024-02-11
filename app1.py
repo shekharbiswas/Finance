@@ -140,7 +140,7 @@ with col2:
         cdf['NIFTY'] = round((100 / cdf['NIFTY'][0])* cdf['NIFTY'], 1)
 
 
-        st.write(cdf['Alpha'][-1])
+        st.write(cdf['Alpha'][len(cdf) - 1])
         st.write(cdf['Alpha'][0])
 
         #alpha_return = round((cdf['Alpha'][-1] / cdf['Alpha'][0] - 1)*100, 1)
