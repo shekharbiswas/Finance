@@ -23,6 +23,7 @@ with col2:
     nse_df = nse_df.head(100)
     
     nse_df['Symbol'] = [str(s) + '.NS' for s in nse_df['Symbol']]
+    tickers = list(pd.unique(nse_df['Symbol']))
 
     st.title("Momentum Stocks - NSE ")
 
@@ -45,8 +46,8 @@ with col2:
     )
     
 
-    st.write(d[0])
-    st.write(d[1])
+    #st.write(d[0])
+    #st.write(d[1])
 
 
     #s_date = datetime.datetime.now() - datetime.timedelta(days=365)
@@ -54,10 +55,21 @@ with col2:
     s_date = d[0].strftime('%Y-%m-%d')
     e_date = d[1].strftime('%Y-%m-%d')
 
-    st.write(d[1] - d[0])
+    st.write(s_date , e_date)
 
-    if (d[1] - d[0]) >= datetime.timedelta(days=6) :
+    if (d[1] - d[0]) >= datetime.timedelta(days=7) :
         st.write('7 days')
+
+        data = yf.download(
+                tickers = tickers,
+                start=s_date,
+                #end=date.today().replace(day=2),
+                end = e_date,
+                interval = "1d",
+                group_by = 'ticker'
+            )
+
+    
 
 
 
