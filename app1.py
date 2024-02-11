@@ -194,7 +194,7 @@ with col2:
         st.table(chosen)
 
 
-        fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['gray', 'blue'])
+        fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['blue', 'gray'])
         #fig.show()  
         st.plotly_chart(fig, use_container_width=True)
 
