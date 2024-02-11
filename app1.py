@@ -71,6 +71,7 @@ with col1:
 
     data = data[[col for col in data.columns if col[1] == 'Adj Close' ]]
     #data = data.reset_index() 
+    st.dataframe(data)
     data.columns = data.columns.droplevel(1)
     data = data.T
 
