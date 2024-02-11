@@ -37,7 +37,7 @@ with col2:
     x = pd.unique(nse_df["Symbol"])
     #x.sort()
 
-    st.header('Choose 2 or more stocks to build your portfolio', divider='rainbow')
+    st.header('Choose 3 or more stocks to build your portfolio', divider='rainbow')
 
     chosen_stocks = []
 
@@ -66,7 +66,7 @@ with col2:
     #chosen_stocks = ['SBIN.NS', 'SIEMENS.NS', 'GODREJCP.NS', 'BAJFINANCE.NS', 'KOTAKBANK.NS']
     #st.write(chosen_stocks)
 
-    if len(chosen_stocks) >= 2:
+    if len(chosen_stocks) >= 3:
     #tickers = list(nse_df['Symbol'])[0:50]
         data = yf.download(
                 #tickers = tickers,
