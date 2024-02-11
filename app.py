@@ -58,7 +58,7 @@ with col1:
 
 # dataframe filter
     #code = code + '.NS'
-    data = yf.download(code + '.NS','2023-01-01','2023-12-31')
+    data = yf.download(code + '.NS','2023-06-01','2024-01-31')
     data = data.reset_index()
     df = data
 
