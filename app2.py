@@ -57,7 +57,7 @@ with col2:
 
     #st.write(s_date , e_date)
 
-    if (d[1] - d[0]) >= datetime.timedelta(days=6) :
+    if (d[1] - d[0]) >= datetime.timedelta(days=4) :
 
         #st.write('7 days')
 
@@ -108,7 +108,7 @@ with col2:
 
         
         fig = px.scatter(data, x=data.columns[-2], y='diff',
-	         size="diff", size_max=60, text="index")
+	         size="diff", size_max=60, text="index", color = 'diff')
         
         fig.update_layout(height=700)
         fig.update_traces( hovertemplate=None)
