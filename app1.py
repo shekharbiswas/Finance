@@ -37,7 +37,7 @@ with col2:
     x = pd.unique(nse_df["Symbol"])
     #x.sort()
 
-    st.header('Choose 5 stocks to build your portfolio', divider='rainbow')
+    st.header('Choose 2 or more stocks to build your portfolio', divider='rainbow')
 
     chosen_stocks = []
 
@@ -66,7 +66,7 @@ with col2:
     #chosen_stocks = ['SBIN.NS', 'SIEMENS.NS', 'GODREJCP.NS', 'BAJFINANCE.NS', 'KOTAKBANK.NS']
     #st.write(chosen_stocks)
 
-    if len(chosen_stocks) >= 1:
+    if len(chosen_stocks) >= 2:
         pass
     
 
@@ -108,7 +108,7 @@ with col2:
 
     drop_stocks = list(data.index[data.isna().sum(axis = 1) > 10])
     data = data.drop(index=drop_stocks)
-    data
+    #data
 
     cdf = data.loc[chosen_stocks, :]
     
