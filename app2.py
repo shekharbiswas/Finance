@@ -92,7 +92,7 @@ with col2:
         data = data.sort_values(by = 'diff', ascending= False)
 
         data = data.dropna()
-        
+
         data = data.reset_index()
 
         st.dataframe(data)
@@ -101,14 +101,14 @@ with col2:
         data['diff'] = data['diff'].astype(int)
         
         data = data.head(10)
-        data['Ticker'] = data['Ticker'].str.split('.', n = 1, expand=True)[0]
+        data['index'] = data['index'].str.split('.', n = 1, expand=True)[0]
 
         st.write("\n \n ")
 
         
         fig = px.scatter(data, x=data.columns[-2], y='diff',
 	         size="diff",
-                 hover_name="diff", size_max=60, text="Ticker")
+                 hover_name="diff", size_max=60, text="index")
         
         st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
 
