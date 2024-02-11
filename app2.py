@@ -113,7 +113,7 @@ with col2:
         with tab1:
 
             fig = px.scatter(data, x=data.columns[-2], y='% Increase',
-	             size="% Increase", size_max=60, text="index", color = '% Increase')
+	             size="% Increase", size_max=60, text="index", color = '% Increase', log_x=True)
 
             fig.update_layout(height=700)
             fig.update_traces( hovertemplate=None)
