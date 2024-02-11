@@ -23,7 +23,7 @@ with col2:
     nse_df = nse_df.head(100)
     
     nse_df['Symbol'] = [str(s) + '.NS' for s in nse_df['Symbol']]
-    tickers = pd.Unique(nse_df['Symbol'])
+    tickers = pd.unique(nse_df['Symbol'])
 
     #nse_df = nse_df.sort_values(by = 'Symbol')
 
