@@ -140,7 +140,7 @@ with col2:
 
         NIFTY_IDX =  list(round(cdf['NIFTY']))
         #st.write(NIFTY_IDX)
-        ALPHA_IDX = round(cdf['Alpha'])
+        ALPHA_IDX = list(round(cdf['Alpha']))
 
 
         
