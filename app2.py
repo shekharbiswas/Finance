@@ -124,6 +124,7 @@ with col2:
 
                 with tab2:
                     st.dataframe(data[['index', '% Increase']])
+                    
 
     except:
         pass
