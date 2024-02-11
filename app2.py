@@ -38,7 +38,7 @@ with col2:
 
     d = st.date_input(
         "Select your vacation for next year",
-        (datetime.date(2024, 1, 1), today),
+        (window_day, today),
         c_start,
         c_end,
         format="DD.MM.YYYY",
