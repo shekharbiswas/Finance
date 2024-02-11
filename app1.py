@@ -16,9 +16,9 @@ st.set_page_config(
     page_icon="✅",
     layout="wide")
 
-col1, col2 = st.columns([3, 1])
+col1, col2, col3 = st.columns([1, 3, 1])
 
-with col1:
+with col2:
     nse_df = pd.read_excel('nse_data.xlsx')
     nse_df = nse_df.head(50)
     
