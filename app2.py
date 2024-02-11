@@ -20,7 +20,7 @@ col1, col2, col3 = st.columns([1, 3, 1])
 
 with col2:
     nse_df = pd.read_excel('nse_data.xlsx')
-    nse_df = nse_df.head(1000)
+    nse_df = nse_df.head(50)
     
     nse_df['Symbol'] = [str(s) + '.NS' for s in nse_df['Symbol']]
     tickers = list(pd.unique(nse_df['Symbol']))
