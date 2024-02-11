@@ -194,9 +194,9 @@ with col2:
         st.table(chosen)
 
 
-    fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['gray', 'blue'])
-    #fig.show()  
-    st.plotly_chart(fig, use_container_width=True)
+        fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['gray', 'blue'])
+        #fig.show()  
+        st.plotly_chart(fig, use_container_width=True)
 
 
         st.header('Nifty vs Alpha Returns', divider='rainbow')
