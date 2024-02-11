@@ -58,6 +58,7 @@ with col2:
     st.write(s_date , e_date)
 
     if (d[1] - d[0]) >= datetime.timedelta(days=7) :
+        
         st.write('7 days')
 
         data = yf.download(
@@ -68,8 +69,31 @@ with col2:
                 interval = "1d",
                 group_by = 'ticker'
             )
+        
+        # Monthly shows data of last day of month
 
-    
+        data = data[[col for col in data.columns if col[1] == 'Adj Close' ]]
+        #data = data.reset_index() 
+        data.columns = data.columns.droplevel(1)
+        data = data.T
+
+        col_backup = data.columns
+
+        data.columns = list(pd.Series(data.columns).apply(lambda x :  x.strftime('%Y-%m-%d')))
+
+        drop_stocks = list(data.index[data.isna().sum(axis = 1) > 10])
+        data = data.drop(index=drop_stocks)
+        data
+
+
+        data['diff'] = round(100*(data[data.columns[-1]] / data[data.columns[0]] - 1))
+        data = data.sort_values(by = 'diff', ascending= False)
+
+        st.dataframe(data)
+
+
+
+
 
 
 
