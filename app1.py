@@ -23,6 +23,7 @@ with col2:
     nse_df = nse_df.head(100)
     
     nse_df['Symbol'] = [str(s) + '.NS' for s in nse_df['Symbol']]
+    tickers = pd.Unique(nse_df['Symbol'])
 
     #nse_df = nse_df.sort_values(by = 'Symbol')
 
@@ -64,8 +65,8 @@ with col2:
     #st.write(chosen_stocks)
 
     data = yf.download(
-                #tickers = tickers,
-                tickers= chosen_stocks,
+                tickers = tickers,
+                #tickers= chosen_stocks,
                 start=s_date,
                 #end=date.today().replace(day=2),
                 end = e_date,
