@@ -20,7 +20,7 @@ col1, col2, col3 = st.columns([1, 3, 1])
 
 with col2:
     nse_df = pd.read_excel('nse_data.xlsx')
-    nse_df = nse_df.head(20)
+    nse_df = nse_df.head(200)
     
     nse_df['Symbol'] = [str(s) + '.NS' for s in nse_df['Symbol']]
     tickers = list(pd.unique(nse_df['Symbol']))
@@ -59,11 +59,12 @@ with col2:
 
     if (d[1] - d[0]) >= datetime.timedelta(days=6) :
 
-        st.write('7 days')
+        #st.write('7 days')
 
-        st.spinner(text="In progress...")
+        
 
-        data = yf.download(
+        with st.spinner('Loading data...'):
+            data = yf.download(
                 tickers = tickers,
                 start=s_date,
                 #end=date.today().replace(day=2),
@@ -85,7 +86,6 @@ with col2:
 
         drop_stocks = list(data.index[data.isna().sum(axis = 1) > 10])
         data = data.drop(index=drop_stocks)
-        data
 
 
         data['diff'] = round(100*(data[data.columns[-1]] / data[data.columns[0]] - 1))
