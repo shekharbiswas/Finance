@@ -194,7 +194,7 @@ with col2:
         st.table(chosen)
 
 
-        fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['gray', 'blue'], hover_data=["IDX"])
+        fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['blue' ,'gray'], hover_data=["IDX"])
         #fig.show()  
         fig.update_layout(height=500)
         
