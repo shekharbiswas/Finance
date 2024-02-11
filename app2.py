@@ -112,6 +112,8 @@ with col2:
                  hover_name=["diff"], size_max=60, text="index")
         
         fig.update_layout(height=700)
+        fig.update_traces( hovertemplate=None)
+        fig.update_layout(hovermode="x")
         
         st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
 
