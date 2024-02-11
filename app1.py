@@ -139,6 +139,9 @@ with col2:
         cdf['Alpha'] = round((100 / cdf['Alpha'][0])* cdf['Alpha'],1)
         cdf['NIFTY'] = round((100 / cdf['NIFTY'][0])* cdf['NIFTY'], 1)
 
+        alpha_return = round((cdf['Alpha'][-1] / cdf['Alpha'][0] - 1)*100, 1)
+        nifty_return = round((cdf['NIFTY'][-1] / cdf['NIFTY'][0] - 1)*100, 1)
+
         cdf = pd.melt(cdf, id_vars=['Date'], value_vars=['Alpha', 'NIFTY'])
 
         cdf.columns = ['Date', 'INDEX', 'PRICE']
@@ -153,6 +156,15 @@ with col2:
         fig.update_layout(height=500)
         
         st.plotly_chart(fig, use_container_width=True, theme="streamlit")
+
+        st.header('Nifty vs Alpha Returns', divider='rainbow')
+
+        st.write(" ")
+
+        st.write('Alpha returns : ' + str(alpha_return) + ' %')
+        st.write(" ")
+        st.write('Nifty returns : ' + str(nifty_return) + ' %')
+        
 
     else:
         pass
