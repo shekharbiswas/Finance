@@ -34,7 +34,7 @@ with col2:
     st.title("Build your MF Portfolio")
 
 # top-level filters
-    x = pd.unique(nse_df["Symbol"])
+    
     #x.sort()
 
     st.header('Choose 3 or more stocks to build your portfolio', divider='rainbow')
@@ -48,10 +48,7 @@ with col2:
     #code3 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code3' )
     #code4 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code4')
     #code5 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code5')
-    codes = st.multiselect("Select the NSE Stock CODE :sunglasses:", x)
-    #st.write('You selected:', list(codes))
 
-    chosen_stocks = list(codes)
 
     s_date = datetime.datetime.now() - datetime.timedelta(days=365)
     s_date = s_date.strftime('%Y-%m-%d')
@@ -66,9 +63,7 @@ with col2:
     #chosen_stocks = ['SBIN.NS', 'SIEMENS.NS', 'GODREJCP.NS', 'BAJFINANCE.NS', 'KOTAKBANK.NS']
     #st.write(chosen_stocks)
 
-    if len(chosen_stocks) >= 3:
-    #tickers = list(nse_df['Symbol'])[0:50]
-        data = yf.download(
+    data = yf.download(
                 #tickers = tickers,
                 tickers= chosen_stocks,
                 start=s_date,
@@ -81,15 +76,15 @@ with col2:
         # Monthly shows data of last day of month
         # 
 
-        data = data[[col for col in data.columns if col[1] == 'Adj Close' ]]
+    data = data[[col for col in data.columns if col[1] == 'Adj Close' ]]
         #data = data.reset_index() 
         #st.dataframe(data)
-        data.columns = data.columns.droplevel(1)
-        data = data.T
+    data.columns = data.columns.droplevel(1)
+    data = data.T
 
-        col_backup = data.columns
+    col_backup = data.columns
 
-        data.columns = list(pd.Series(data.columns).apply(lambda x :  x.strftime('%Y-%m-%d')))
+    data.columns = list(pd.Series(data.columns).apply(lambda x :  x.strftime('%Y-%m-%d')))
 
         ########## Mapping ###################
         #  120 : 10Y
@@ -101,9 +96,28 @@ with col2:
         ##
         # drop stocks with lot of NAs
 
-        drop_stocks = list(data.index[data.isna().sum(axis = 1) > 10])
-        data = data.drop(index=drop_stocks)
+    drop_stocks = list(data.index[data.isna().sum(axis = 1) > 10])
+    data = data.drop(index=drop_stocks)
         #data
+
+    st.dataframe(data)
+
+    x = pd.unique(data.index)
+    codes = st.multiselect("Select the NSE Stock CODE :sunglasses:", x)
+    #st.write('You selected:', list(codes))
+
+    chosen_stocks = list(codes)
+
+
+
+    if len(chosen_stocks) >= 3:
+    #tickers = list(nse_df['Symbol'])[0:50]
+        
+
+    
+
+
+        
 
         cdf = data.loc[chosen_stocks, :]
 
