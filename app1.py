@@ -49,7 +49,7 @@ with col2:
     #code4 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code4')
     #code5 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code5')
     codes = st.multiselect("Select the NSE Stock CODE :sunglasses:", x)
-    st.write('You selected:', list(codes))
+    #st.write('You selected:', list(codes))
 
     chosen_stocks = list(codes)
 
@@ -64,7 +64,7 @@ with col2:
     #chosen_stocks = [str(code1), str(code2), str(code3), str(code4), str(code5)]
 
     #chosen_stocks = ['SBIN.NS', 'SIEMENS.NS', 'GODREJCP.NS', 'BAJFINANCE.NS', 'KOTAKBANK.NS']
-    st.write(chosen_stocks)
+    #st.write(chosen_stocks)
 
 
 
