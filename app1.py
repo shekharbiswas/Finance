@@ -84,7 +84,7 @@ with col2:
 
     data = data[[col for col in data.columns if col[1] == 'Adj Close' ]]
     #data = data.reset_index() 
-    st.dataframe(data)
+    #st.dataframe(data)
     data.columns = data.columns.droplevel(1)
     data = data.T
 
@@ -145,6 +145,7 @@ with col2:
     cdf.columns = ['Date', 'INDEX', 'PRICE']
 
     chosen = nse_df.loc[nse_df['Symbol'].isin(list(chosen.index)),'Company Name'].reset_index(drop = True)
+    st.header(' ## Chosen Stocks ' )
     st.table(chosen)
 
 
