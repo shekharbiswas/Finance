@@ -111,6 +111,8 @@ with col2:
 	         size="diff",
                  hover_name="diff", size_max=60, text="index")
         
+        fig.update_layout(height=700)
+        
         st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
 
 
