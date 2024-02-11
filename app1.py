@@ -194,11 +194,10 @@ with col2:
         st.table(chosen)
 
 
-        fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['blue' ,'gray'], hover_data=["IDX"])
-        #fig.show()  
-        fig.update_layout(height=500)
-        
-        st.plotly_chart(fig, use_container_width=True, theme="streamlit")
+    fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['gray', 'blue'])
+    #fig.show()  
+    st.plotly_chart(fig, use_container_width=True)
+
 
         st.header('Nifty vs Alpha Returns', divider='rainbow')
 
