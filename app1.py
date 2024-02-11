@@ -23,7 +23,7 @@ with col2:
     nse_df = nse_df.head(100)
     
     nse_df['Symbol'] = [str(s) + '.NS' for s in nse_df['Symbol']]
-    tickers = list(pd.unique(nse_df['Symbol']))
+    #tickers = list(pd.unique(nse_df['Symbol']))
 
     #nse_df = nse_df.sort_values(by = 'Symbol')
 
@@ -40,7 +40,7 @@ with col2:
 
     st.header('Choose 3 or more stocks to build your portfolio', divider='rainbow')
 
-    chosen_stocks = []
+    #chosen_stocks = []
 
     DEFAULT = '< PICK A VALUE >'
 
@@ -49,6 +49,8 @@ with col2:
     #code3 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code3' )
     #code4 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code4')
     #code5 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code5')
+
+
 
 
     s_date = datetime.datetime.now() - datetime.timedelta(days=365)
@@ -65,8 +67,8 @@ with col2:
     #st.write(chosen_stocks)
 
     data = yf.download(
-                tickers = tickers,
-                #tickers= chosen_stocks,
+                #tickers = tickers,
+                tickers= chosen_stocks,
                 start=s_date,
                 #end=date.today().replace(day=2),
                 end = e_date,
@@ -102,14 +104,15 @@ with col2:
         #data
 
     #st.dataframe(data)
-
     x = list(pd.unique(data.index))
-    st.write(x)
+    #st.write(x)
     
     codes = st.multiselect("Select the NSE Stock CODE :sunglasses:", x)
     st.write('You selected:', list(codes))
 
     chosen_stocks = list(codes)
+
+
 
 
 
