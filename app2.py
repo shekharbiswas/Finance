@@ -54,6 +54,8 @@ with col2:
     s_date = d[0].strftime('%Y-%m-%d')
     e_date = d[1].strftime('%Y-%m-%d')
 
+    
+
 
     
 
