@@ -91,6 +91,10 @@ with col2:
         data['diff'] = round(100*(data[data.columns[-1]] / data[data.columns[0]] - 1))
         data = data.sort_values(by = 'diff', ascending= False)
         data = data.reset_index()
+
+        st.dataframe(data)
+
+
         data['diff'] = data['diff'].astype(int)
         
         data = data.head(10)
@@ -98,8 +102,7 @@ with col2:
 
         st.write("\n \n ")
 
-        st.dataframe(data)
-
+        
         fig = px.scatter(data, x=data.columns[-2], y='diff',
 	         size="diff",
                  hover_name="diff", size_max=60, text="Ticker")
