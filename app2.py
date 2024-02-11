@@ -58,8 +58,10 @@ with col2:
     st.write(s_date , e_date)
 
     if (d[1] - d[0]) >= datetime.timedelta(days=7) :
-        
+
         st.write('7 days')
+
+        st.spinner(text="In progress...")
 
         data = yf.download(
                 tickers = tickers,
