@@ -101,11 +101,11 @@ with col2:
     data = data.drop(index=drop_stocks)
         #data
 
-    st.dataframe(data)
+    #st.dataframe(data)
 
     x = pd.unique(data.index)
     codes = st.multiselect("Select the NSE Stock CODE :sunglasses:", x)
-    #st.write('You selected:', list(codes))
+    st.write('You selected:', list(codes))
 
     chosen_stocks = list(codes)
 
