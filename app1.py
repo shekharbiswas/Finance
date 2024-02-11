@@ -140,14 +140,13 @@ with col2:
         cdf['NIFTY'] = round((100 / cdf['NIFTY'][0])* cdf['NIFTY'], 1)
 
 
-        st.write(cdf['Alpha'][len(cdf) - 1])
-        st.write(cdf['Alpha'][0])
+        #st.write(cdf['Alpha'][len(cdf) - 1])
+        #st.write(cdf['Alpha'][0])
 
-        #alpha_return = round((cdf['Alpha'][-1] / cdf['Alpha'][0] - 1)*100, 1)
-        #nifty_return = round((cdf['NIFTY'][-1] / cdf['NIFTY'][0] - 1)*100, 1)
+        alpha_return = round((cdf['Alpha'][len(cdf) - 1] / cdf['Alpha'][0] - 1)*100, 1)
+        nifty_return = round((cdf['NIFTY'][len(cdf) - 1] / cdf['NIFTY'][0] - 1)*100, 1)
 
-        alpha_return = 90
-        nifty_return = 20
+
 
         cdf = pd.melt(cdf, id_vars=['Date'], value_vars=['Alpha', 'NIFTY'])
 
