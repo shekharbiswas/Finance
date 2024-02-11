@@ -103,7 +103,9 @@ with col2:
 
     #st.dataframe(data)
 
-    x = pd.unique(data.index)
+    x = list(pd.unique(data.index))
+    st.write(x)
+    
     codes = st.multiselect("Select the NSE Stock CODE :sunglasses:", x)
     st.write('You selected:', list(codes))
 
