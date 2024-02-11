@@ -32,12 +32,12 @@ with col2:
     st.write('Select window of at least 1 week')
 
     today = datetime.datetime.now()
-    window_day = today - datetime.timedelta(days=7)
-    c_start = datetime.datetime.now() - datetime.timedelta(days=365)
+    window_day = today - datetime.timedelta(days=6)
+    c_start = datetime.datetime.now() - datetime.timedelta(years=2)
     c_end = datetime.datetime.today()
 
     d = st.date_input(
-        "Select your vacation for next year",
+        "Check Momentum stocks for a Time Frame ( 1 Week at least )",
         (window_day, today),
         c_start,
         c_end,
