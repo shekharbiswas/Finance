@@ -33,7 +33,7 @@ with col2:
 
     today = datetime.datetime.now()
     window_day = today - datetime.timedelta(days=6)
-    c_start = datetime.datetime.now() - datetime.timedelta(years=2)
+    c_start = datetime.datetime.now() - datetime.timedelta(days=365)
     c_end = datetime.datetime.today()
 
     d = st.date_input(
