@@ -67,7 +67,10 @@ with col2:
     #st.write(chosen_stocks)
 
     if len(chosen_stocks) >= 2:
-        pass
+        st.stop()
+
+    else:
+        st.rerun()
     
 
 
