@@ -108,8 +108,7 @@ with col2:
 
         
         fig = px.scatter(data, x=data.columns[-2], y='diff',
-	         size="diff",
-                 hover_name=["diff"], size_max=60, text="index")
+	         size="diff", size_max=60, text="index")
         
         fig.update_layout(height=700)
         fig.update_traces( hovertemplate=None)
