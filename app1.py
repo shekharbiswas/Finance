@@ -66,6 +66,10 @@ with col2:
     #chosen_stocks = ['SBIN.NS', 'SIEMENS.NS', 'GODREJCP.NS', 'BAJFINANCE.NS', 'KOTAKBANK.NS']
     #st.write(chosen_stocks)
 
+    if len(chosen_stocks) >= 1:
+        pass
+    
+
 
 
     #tickers = list(nse_df['Symbol'])[0:50]
