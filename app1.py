@@ -20,6 +20,8 @@ col1, col2 = st.columns([3, 1])
 
 with col1:
     nse_df = pd.read_excel('nse_data.xlsx')
+    nse_df = nse_df.head(50)
+    
     nse_df['Symbol'] = [str(s) + '.NS' for s in nse_df['Symbol']]
 
     nse_df = nse_df.sort_values(by = 'Symbol')
