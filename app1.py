@@ -154,8 +154,8 @@ with col2:
         #st.write(cdf['Alpha'][len(cdf) - 1])
         #st.write(cdf['Alpha'][0])
 
-        alpha_return = round((cdf['Alpha'][len(cdf) - 1] / cdf['Alpha'][0] - 1)*100, 1)
-        nifty_return = round((cdf['NIFTY'][len(cdf) - 1] / cdf['NIFTY'][0] - 1)*100, 1)
+        alpha_return = round((cdf['Alpha'][len(cdf) - 1] / cdf['Alpha'][0] - 1)*100)
+        nifty_return = round((cdf['NIFTY'][len(cdf) - 1] / cdf['NIFTY'][0] - 1)*100)
 
 
 
