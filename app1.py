@@ -52,6 +52,7 @@ with col2:
 
         #st.dataframe(data)
     x = list(pd.unique(nse_df['Symbol'] ))
+    x.remove('HDFC.NS')
     #st.write(x)
     
     codes = st.multiselect("Select the NSE Stock CODE :sunglasses:", x)
