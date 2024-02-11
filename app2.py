@@ -30,7 +30,7 @@ with col2:
     st.header('Top stocks showing most momentum', divider='rainbow')
 
 
-    st.write('Select window of at least 1 week')
+    st.subheader('The date range should be at least 1 week')
 
     today = datetime.datetime.now()
     window_day = today - datetime.timedelta(days=6)
@@ -38,7 +38,7 @@ with col2:
     c_end = datetime.datetime.today()
 
     d = st.date_input(
-        "Check Momentum stocks for a Time Frame ( 1 Week at least )",
+        "Check Momentum stocks for a Time Frame ",
         (window_day, today),
         c_start,
         c_end,
@@ -55,7 +55,7 @@ with col2:
     s_date = d[0].strftime('%Y-%m-%d')
     e_date = d[1].strftime('%Y-%m-%d')
 
-    st.write(s_date , e_date)
+    #st.write(s_date , e_date)
 
     if (d[1] - d[0]) >= datetime.timedelta(days=6) :
 
@@ -90,8 +90,22 @@ with col2:
 
         data['diff'] = round(100*(data[data.columns[-1]] / data[data.columns[0]] - 1))
         data = data.sort_values(by = 'diff', ascending= False)
+        data = data.reset_index()
+        data['diff'] = data['diff'].astype(int)
+        
+        data = data.head(10)
+        data['Ticker'] = data['Ticker'].str.split('.', n = 1, expand=True)[0]
+
+        st.write("\n \n ")
 
         st.dataframe(data)
+
+        fig = px.scatter(data, x=data.columns[-2], y='diff',
+	         size="diff",
+                 hover_name="diff", size_max=60, text="Ticker")
+        
+        st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
+
 
 
 
