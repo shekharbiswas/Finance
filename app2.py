@@ -95,13 +95,14 @@ with col2:
 
         data = data.reset_index()
 
-        st.dataframe(data)
+        
 
 
         data['diff'] = data['diff'].astype(int)
         
         data = data.head(10)
         data['index'] = data['index'].str.split('.', n = 1, expand=True)[0]
+        st.dataframe(data[['index', 'diff']])
 
         st.write("\n \n ")
 
