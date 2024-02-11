@@ -31,13 +31,14 @@ with col2:
 
     st.write('Select window of at least 1 week')
 
-    #today = datetime.datetime.now()
+    today = datetime.datetime.now()
+    window_day = today - datetime.timedelta(days=7)
     c_start = datetime.datetime.now() - datetime.timedelta(days=365)
     c_end = datetime.datetime.today()
 
     d = st.date_input(
         "Select your vacation for next year",
-        (c_start, c_end),
+        (datetime.date(2024, 1, 1), today),
         c_start,
         c_end,
         format="DD.MM.YYYY",
