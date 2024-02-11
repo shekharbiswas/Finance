@@ -90,6 +90,9 @@ with col2:
 
         data['diff'] = round(100*(data[data.columns[-1]] / data[data.columns[0]] - 1))
         data = data.sort_values(by = 'diff', ascending= False)
+
+        data = data.dropna()
+        
         data = data.reset_index()
 
         st.dataframe(data)
