@@ -145,7 +145,7 @@ with col2:
     cdf.columns = ['Date', 'INDEX', 'PRICE']
 
     chosen = nse_df.loc[nse_df['Symbol'].isin(list(chosen.index)),'Company Name'].reset_index(drop = True)
-    st.header(' ## Chosen Stocks ' )
+    #st.header(' ## Chosen Stocks ' )
     st.table(chosen)
 
 
