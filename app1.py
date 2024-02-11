@@ -67,98 +67,93 @@ with col2:
     #st.write(chosen_stocks)
 
     if len(chosen_stocks) >= 2:
-        st.stop()
+    #tickers = list(nse_df['Symbol'])[0:50]
+        data = yf.download(
+                #tickers = tickers,
+                tickers= chosen_stocks,
+                start=s_date,
+                #end=date.today().replace(day=2),
+                end = e_date,
+                interval = "1d",
+                group_by = 'ticker'
+            )
+
+        # Monthly shows data of last day of month
+        # 
+
+        data = data[[col for col in data.columns if col[1] == 'Adj Close' ]]
+        #data = data.reset_index() 
+        #st.dataframe(data)
+        data.columns = data.columns.droplevel(1)
+        data = data.T
+
+        col_backup = data.columns
+
+        data.columns = list(pd.Series(data.columns).apply(lambda x :  x.strftime('%Y-%m-%d')))
+
+        ########## Mapping ###################
+        #  120 : 10Y
+        #    3 : 3M
+        #    6 : 6 M
+        #
+        #   etc.
+        #
+        ##
+        # drop stocks with lot of NAs
+
+        drop_stocks = list(data.index[data.isna().sum(axis = 1) > 10])
+        data = data.drop(index=drop_stocks)
+        #data
+
+        cdf = data.loc[chosen_stocks, :]
+
+        # copy to show the table of chosen stocks
+
+        chosen = cdf.copy()
+
+        cdf = pd.DataFrame(cdf.mean(axis = 0))
+
+
+
+        nifty = yf.download(
+                tickers = '^NSEI',
+                start=s_date,
+                #end=date.today().replace(day=2),
+                end = e_date,
+                interval = "1d",
+                group_by = 'ticker'
+            )
+
+        nifty = nifty['Adj Close']
+        nifty = pd.DataFrame(nifty)
+        nifty = nifty.reset_index()
+        nifty['Date'] = nifty['Date'].apply(lambda x :  x.strftime('%Y-%m-%d'))
+        nifty.columns = ['Date', 'NIFTY']
+        #cdf['nifty'] = list(nifty)
+
+        cdf = cdf.reset_index()
+        cdf.columns = ['Date', 'Alpha']
+
+        cdf = pd.merge(cdf, nifty)
+
+        cdf['Alpha'] = round((100 / cdf['Alpha'][0])* cdf['Alpha'],1)
+        cdf['NIFTY'] = round((100 / cdf['NIFTY'][0])* cdf['NIFTY'], 1)
+
+        cdf = pd.melt(cdf, id_vars=['Date'], value_vars=['Alpha', 'NIFTY'])
+
+        cdf.columns = ['Date', 'INDEX', 'PRICE']
+
+        chosen = nse_df.loc[nse_df['Symbol'].isin(list(chosen.index)),'Company Name'].reset_index(drop = True)
+        #st.header(' ## Chosen Stocks ' )
+        st.table(chosen)
+
+
+        fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['gray', 'blue'])
+        #fig.show()  
+        st.plotly_chart(fig, use_container_width=True, height=800)
 
     else:
-        st.rerun()
-    
-
-
-
-    #tickers = list(nse_df['Symbol'])[0:50]
-    data = yf.download(
-            #tickers = tickers,
-            tickers= chosen_stocks,
-            start=s_date,
-            #end=date.today().replace(day=2),
-            end = e_date,
-            interval = "1d",
-            group_by = 'ticker'
-        )
-
-    # Monthly shows data of last day of month
-    # 
-
-    data = data[[col for col in data.columns if col[1] == 'Adj Close' ]]
-    #data = data.reset_index() 
-    #st.dataframe(data)
-    data.columns = data.columns.droplevel(1)
-    data = data.T
-
-    col_backup = data.columns
-
-    data.columns = list(pd.Series(data.columns).apply(lambda x :  x.strftime('%Y-%m-%d')))
-
-    ########## Mapping ###################
-    #  120 : 10Y
-    #    3 : 3M
-    #    6 : 6 M
-    #
-    #   etc.
-    #
-    ##
-    # drop stocks with lot of NAs
-
-    drop_stocks = list(data.index[data.isna().sum(axis = 1) > 10])
-    data = data.drop(index=drop_stocks)
-    #data
-
-    cdf = data.loc[chosen_stocks, :]
-    
-    # copy to show the table of chosen stocks
-
-    chosen = cdf.copy()
-
-    cdf = pd.DataFrame(cdf.mean(axis = 0))
-
-
-
-    nifty = yf.download(
-            tickers = '^NSEI',
-            start=s_date,
-            #end=date.today().replace(day=2),
-            end = e_date,
-            interval = "1d",
-            group_by = 'ticker'
-        )
-
-    nifty = nifty['Adj Close']
-    nifty = pd.DataFrame(nifty)
-    nifty = nifty.reset_index()
-    nifty['Date'] = nifty['Date'].apply(lambda x :  x.strftime('%Y-%m-%d'))
-    nifty.columns = ['Date', 'NIFTY']
-    #cdf['nifty'] = list(nifty)
-
-    cdf = cdf.reset_index()
-    cdf.columns = ['Date', 'Alpha']
-
-    cdf = pd.merge(cdf, nifty)
-
-    cdf['Alpha'] = round((100 / cdf['Alpha'][0])* cdf['Alpha'],1)
-    cdf['NIFTY'] = round((100 / cdf['NIFTY'][0])* cdf['NIFTY'], 1)
-
-    cdf = pd.melt(cdf, id_vars=['Date'], value_vars=['Alpha', 'NIFTY'])
-
-    cdf.columns = ['Date', 'INDEX', 'PRICE']
-
-    chosen = nse_df.loc[nse_df['Symbol'].isin(list(chosen.index)),'Company Name'].reset_index(drop = True)
-    #st.header(' ## Chosen Stocks ' )
-    st.table(chosen)
-
-
-    fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['gray', 'blue'])
-    #fig.show()  
-    st.plotly_chart(fig, use_container_width=True, height=800)
+        pass
 
 
 
