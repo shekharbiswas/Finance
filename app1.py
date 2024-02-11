@@ -41,21 +41,26 @@ with col2:
 
     chosen_stocks = []
 
+    DEFAULT = '< PICK A VALUE >'
 
-    code1 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code1')
-    code2 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code2')
-    code3 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code3')
-    code4 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code4')
-    code5 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code5')
+    code1 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code1',  default = DEFAULT )
+    code2 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code2' , default = DEFAULT )
+    code3 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code3' , default = DEFAULT)
+    code4 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code4' , default = DEFAULT)
+    code5 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code5' , default = DEFAULT)
 
 
     s_date = datetime.datetime.now() - datetime.timedelta(days=365)
     s_date = s_date.strftime('%Y-%m-%d')
     e_date = datetime.datetime.today().strftime('%Y-%m-%d')
 
+    if ((code1 != DEFAULT) and (code2 != DEFAULT) and (code3 != DEFAULT) and (code4 != DEFAULT) and (code5 != DEFAULT)):
+        pass
+        
+
     chosen_stocks = [str(code1), str(code2), str(code3), str(code4), str(code5)]
 
-    chosen_stocks = ['SBIN.NS', 'SIEMENS.NS', 'GODREJCP.NS', 'BAJFINANCE.NS', 'KOTAKBANK.NS']
+    #chosen_stocks = ['SBIN.NS', 'SIEMENS.NS', 'GODREJCP.NS', 'BAJFINANCE.NS', 'KOTAKBANK.NS']
     st.write(chosen_stocks)
 
 
