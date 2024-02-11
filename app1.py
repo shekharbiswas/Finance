@@ -157,15 +157,15 @@ with col2:
 
         cdf.columns = ['Date', 'INDEX', 'PRICE']
 
-        cdf.loc[cdf['INDEX'] == 'NIFTY', 'NIFTY_IDX'] = NIFTY_IDX
-        cdf.loc[cdf['INDEX'] == 'NIFTY', 'ALPHA_IDX'] = ALPHA_IDX
+        cdf.loc[cdf['INDEX'] == 'NIFTY', 'IDX'] = NIFTY_IDX
+        cdf.loc[cdf['INDEX'] == 'Alpha', 'IDX'] = ALPHA_IDX
 
         chosen = nse_df.loc[nse_df['Symbol'].isin(list(chosen.index)),'Company Name'].reset_index(drop = True)
         #st.header(' ## Chosen Stocks ' )
         st.table(chosen)
 
 
-        fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['gray', 'blue'], hover_data=["NIFTY_IDX", "ALPHA_IDX"])
+        fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['gray', 'blue'], hover_data=["IDX"])
         #fig.show()  
         fig.update_layout(height=500)
         
