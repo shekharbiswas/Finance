@@ -16,12 +16,9 @@ st.set_page_config(
     page_icon="✅",
     layout="wide")
 
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([3, 1])
 
 with col1:
-
-    
-    
     nse_df = pd.read_excel('nse_data.xlsx')
     nse_df['Symbol'] = [str(s) + '.NS' for s in nse_df['Symbol']]
 
@@ -41,11 +38,11 @@ with col1:
     st.header('Choose 5 stocks to build your portfolio', divider='rainbow')
 
 
-    code1 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x)
-    code2 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x)
-    code3 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x)
-    code4 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x)
-    code5 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x)
+    code1 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code1')
+    code2 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code2')
+    code3 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code3')
+    code4 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code4')
+    code5 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code5')
 
 
     s_date = datetime.datetime.now() - datetime.timedelta(days=365)
