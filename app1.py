@@ -55,6 +55,7 @@ with col1:
 
     chosen_stocks = [str(code1), str(code2), str(code3), str(code4), str(code5)]
 
+    chosen_stocks = ['SBIN.NS', 'SIEMENS.NS', 'GODREJCP.NS', 'BAJFINANCE.NS', 'KOTAKBANK.NS']
     st.write(chosen_stocks)
 
 
