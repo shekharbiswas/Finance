@@ -102,13 +102,16 @@ with col2:
         
         data = data.head(10)
         data['index'] = data['index'].str.split('.', n = 1, expand=True)[0]
+
+        data.rename(columns = {'diff' : '% Increase'})
+
         st.dataframe(data[['index', 'diff']])
 
         st.write("\n \n ")
 
         
-        fig = px.scatter(data, x=data.columns[-2], y='diff',
-	         size="diff", size_max=60, text="index", color = 'diff')
+        fig = px.scatter(data, x=data.columns[-2], y='% Increase',
+	         size="% Increase", size_max=60, text="index", color = '% Increase')
         
         fig.update_layout(height=700)
         fig.update_traces( hovertemplate=None)
