@@ -39,6 +39,8 @@ with col1:
 
     st.header('Choose 5 stocks to build your portfolio', divider='rainbow')
 
+    chosen_stocks = []
+
 
     code1 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code1')
     code2 = st.selectbox("Select the NSE Stock CODE :sunglasses:", x, key = 'code2')
@@ -52,6 +54,8 @@ with col1:
     e_date = datetime.datetime.today().strftime('%Y-%m-%d')
 
     chosen_stocks = [str(code1), str(code2), str(code3), str(code4), str(code5)]
+
+    st.write(chosen_stocks)
 
 
 
