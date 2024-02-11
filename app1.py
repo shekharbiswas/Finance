@@ -165,7 +165,7 @@ with col2:
 
         
 
-        st.dataframe(cdf)
+        #st.dataframe(cdf)
 
         cdf.loc[cdf['INDEX'] == 'NIFTY', 'IDX'] = NIFTY_IDX
         cdf.loc[cdf['INDEX'] == 'Alpha', 'IDX'] = ALPHA_IDX
