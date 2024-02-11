@@ -106,7 +106,7 @@ with col2:
 
                 data = data.rename(columns = {'diff' : '% Increase'})
 
-                tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
+                tab1, tab2, tab3= st.tabs(["📈 Chart", "🗃 Data", "📈 Chart"])
 
 
                 st.write("\n \n ")
@@ -124,7 +124,13 @@ with col2:
 
                 with tab2:
                     st.dataframe(data[['index', '% Increase']])
-                    
+
+                with tab3:
+                    pass
+
+
+                
+
 
     except:
         pass
