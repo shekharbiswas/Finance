@@ -163,6 +163,10 @@ with col2:
 
         cdf.columns = ['Date', 'INDEX', 'PRICE']
 
+        
+
+        st.dataframe(cdf)
+
         cdf.loc[cdf['INDEX'] == 'NIFTY', 'IDX'] = NIFTY_IDX
         cdf.loc[cdf['INDEX'] == 'Alpha', 'IDX'] = ALPHA_IDX
 
