@@ -49,9 +49,10 @@ with col2:
     st.write(d[1])
 
 
-    s_date = datetime.datetime.now() - datetime.timedelta(days=365)
-    s_date = s_date.strftime('%Y-%m-%d')
-    e_date = datetime.datetime.today().strftime('%Y-%m-%d')
+    #s_date = datetime.datetime.now() - datetime.timedelta(days=365)
+    
+    s_date = d[0].strftime('%Y-%m-%d')
+    e_date = d[1].strftime('%Y-%m-%d')
 
 
     
