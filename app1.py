@@ -150,7 +150,7 @@ with col2:
 
         fig = px.line(cdf, x="Date", y="PRICE", title='Alpha vs Nifty', color = 'INDEX',  color_discrete_sequence=['gray', 'blue'])
         #fig.show()  
-        fig.update_layout(height=600)
+        fig.update_layout(height=500)
         
         st.plotly_chart(fig, use_container_width=True, theme="streamlit")
 
