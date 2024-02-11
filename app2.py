@@ -105,7 +105,7 @@ with col2:
 
         data = data.rename(columns = {'diff' : '% Increase'})
 
-        st.dataframe(data[['index', 'diff']])
+        st.dataframe(data[['index', '% Increase']])
 
         st.write("\n \n ")
 
