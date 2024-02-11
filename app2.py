@@ -54,7 +54,13 @@ with col2:
     s_date = d[0].strftime('%Y-%m-%d')
     e_date = d[1].strftime('%Y-%m-%d')
 
-    
+    st.write(d[1] - d[0])
+
+    if (d[1] - d[0]) >= 7 :
+        st.write('7 days')
+
+
+
 
 
     
