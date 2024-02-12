@@ -35,13 +35,6 @@
 
 ![image](https://github.com/shekharbiswas/Finance/assets/32758439/dd2d848b-45fb-410b-9f7d-96f4841f88fe)
 
-![image](https://github.com/shekharbiswas/Finance/assets/32758439/f654503d-3928-4a94-9fae-3ac52a1eb893)
-
-![image](https://github.com/shekharbiswas/Finance/assets/32758439/c3aaa19e-ff8b-4d01-861e-b9f9f3c441e3)
-
-
-
-
 
 ![image](https://github.com/shekharbiswas/Finance/assets/32758439/d7100798-3e37-418a-9c4c-89679dafbb17)
 
@@ -51,6 +44,16 @@
 
 
 ![image](https://github.com/shekharbiswas/Finance/assets/32758439/e666b30b-a43d-442e-ac14-caa41adb8681)
+
+
+![image](https://github.com/shekharbiswas/Finance/assets/32758439/f654503d-3928-4a94-9fae-3ac52a1eb893)
+
+![image](https://github.com/shekharbiswas/Finance/assets/32758439/c3aaa19e-ff8b-4d01-861e-b9f9f3c441e3)
+
+
+
+
+
 
 ![image](https://github.com/shekharbiswas/Finance/assets/32758439/bf7cf6ee-b7d1-47ee-a402-60dd7a2b3151)
 
