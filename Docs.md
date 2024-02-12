@@ -17,6 +17,14 @@
 ![image](https://github.com/shekharbiswas/Finance/assets/32758439/1a3947c4-191e-4ef3-adfb-ecd65f0b0101)
 
 
+![image](https://github.com/shekharbiswas/Finance/assets/32758439/713cfb22-2846-4e7c-8680-fbfeb2f0304c)
+
+
+![image](https://github.com/shekharbiswas/Finance/assets/32758439/09573325-bd0d-402f-8bdd-3e3cbb1bf28c)
+
+
+
+
 
 
 
