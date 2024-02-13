@@ -134,7 +134,8 @@ with col2:
                             x=list(df.index),
                             y=df['Vol']//(df['Vol'].max() / (df['Price'].max() -df['Price'].min())) + df['Price'].min()  ,
                             opacity=0.1,
-                            name = 'Volume'
+                            name = 'Volume',
+                            hoverinfo='none'
                         ))
 
                     fig.update_layout(yaxis={"range":[df['Price'].min(), df['Price'].max()]})
