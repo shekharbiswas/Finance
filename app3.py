@@ -23,18 +23,28 @@ with col2:
     nse_df = nse_df.head(500)
     
     nse_df['Symbol'] = [str(s) + '.NS' for s in nse_df['Symbol']]
-    tickers = list(pd.unique(nse_df['Symbol']))
+
+    x = list(pd.unique(nse_df['Symbol'] ))
+    x.remove('HDFC.NS')
+
+    code = st.select("Select the NSE Stock CODE :sunglasses:", x)
+    st.write('You selected:', code)
+
+    chosen_stocks = code
+
+
+
 
     st.title("Analysis Stocks - NSE ")
 
-    st.header('Check the public sentiment before investing', divider='rainbow')
+    st.header('Check the public sentiment before investing at your own risk', divider='rainbow')
 
 
-    st.subheader('The date range should be at least 1 week')
+    st.subheader('The date range should be at least 1 month')
 
     today = datetime.datetime.now()
-    window_day = today - datetime.timedelta(days=6)
-    c_start = datetime.datetime.now() - datetime.timedelta(days=365)
+    window_day = today - datetime.timedelta(days=30)
+    c_start = datetime.datetime.now() - datetime.timedelta(days=730)
     c_end = datetime.datetime.today()
 
     d = st.date_input(
@@ -44,13 +54,7 @@ with col2:
         c_end,
         format="DD.MM.YYYY",
     )
-    
 
-    #st.write(d[0])
-    #st.write(d[1])
-
-
-    #s_date = datetime.datetime.now() - datetime.timedelta(days=365)
     
     try:
         if (d[0] and d[1]):
@@ -59,13 +63,24 @@ with col2:
 
     #st.write(s_date , e_date)
 
-            if (d[1] - d[0]) >= datetime.timedelta(days=4) :
+            if (d[1] - d[0]) >= datetime.timedelta(days=30) :
 
                 #st.write('7 days')
 
                 with st.spinner('Analyzing data...'):
-                    data = yf.download(
-                        tickers = tickers,
+                    df = yf.download(
+                        tickers = chosen_stocks,
+                        start=s_date,
+                        #end=date.today().replace(day=2),
+                        end = e_date,
+                        interval = "1d",
+                        threads=True,
+                        group_by = 'ticker'
+                    )
+
+
+                    nifty = yf.download(
+                        tickers = '^NSEI',
                         start=s_date,
                         #end=date.today().replace(day=2),
                         end = e_date,
@@ -75,55 +90,45 @@ with col2:
                     )
 
                 # Monthly shows data of last day of month
-
-                data = data[[col for col in data.columns if col[1] == 'Adj Close' ]]
-                #data = data.reset_index() 
-                data.columns = data.columns.droplevel(1)
-                data = data.T
-
-                col_backup = data.columns
-
-                data.columns = list(pd.Series(data.columns).apply(lambda x :  x.strftime('%Y-%m-%d')))
-
-                drop_stocks = list(data.index[data.isna().sum(axis = 1) > 10])
-                data = data.drop(index=drop_stocks)
+                    
+                df = df[['Adj Close', 'Volume']]
+                df.columns = ['Price', 'Vol']
 
 
-                data['diff'] = round(100*(data[data.columns[-1]] / data[data.columns[0]] - 1))
-                data = data.sort_values(by = 'diff', ascending= False)
+                # resample 
 
-                data = data.dropna()
-
-                data = data.reset_index()
+                #df = df.resample('5d').mean()
+                #nifty = nifty.resample('5d').mean()
 
 
 
+                df['P5'] = df['Price'].shift(5)
+                df['V5'] = df['Vol'].shift(5)
 
-                data['diff'] = data['diff'].astype(int)
+                df['PC'] = df['Price'] - df['P5']
+                df['VC'] = df['Vol'] - df['V5']
 
-                data = data.head(10)
-                data['index'] = data['index'].str.split('.', n = 1, expand=True)[0]
 
-                data = data.rename(columns = {'diff' : '% Increase'})
+                df['N50'] = nifty['Adj Close']
+
+                df = df[df['Vol'] != 0]
 
                 tab1, tab2, tab3= st.tabs(["📈 Chart", "🗃 Data", "📈 Chart"])
 
 
-                st.write("\n \n ")
-
                 with tab1:
 
-                    fig = px.scatter(data, x=data.columns[-2], y='% Increase',
-	                     size="% Increase", size_max=60, text="index", color = '% Increase', log_x=True)
+                    fig = px.line(df.reset_index() , x='Date', y='Price', markers=True)
+                    fig.show()
 
-                    fig.update_layout(height=700)
-                    fig.update_traces( hovertemplate=None)
-                    fig.update_layout(hovermode="x")
+                    #fig.update_layout(height=700)
+                    #fig.update_traces( hovertemplate=None)
+                    #fig.update_layout(hovermode="x")
 
                     st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
 
                 with tab2:
-                    st.dataframe(data[['index', '% Increase']])
+                    pass
 
                 with tab3:
                     pass
