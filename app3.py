@@ -140,7 +140,7 @@ with col2:
                     #fig = px.line(df.reset_index() , x='Date', y='Price', markers=True)
                     #fig.show()
 
-                    #fig.update_layout(height=700)
+                    fig.update_layout(height=700)
                     #fig.update_traces( hovertemplate=None)
                     #fig.update_layout(hovermode="x")
 
