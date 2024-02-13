@@ -48,7 +48,7 @@ with col2:
     c_end = datetime.datetime.today()
 
     d = st.date_input(
-        "Check Momentum stocks for a Time Frame ",
+        "Select a Time Frame ( >= 30 days ) ",
         (window_day, today),
         c_start,
         c_end,
