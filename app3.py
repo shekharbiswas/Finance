@@ -132,7 +132,7 @@ with col2:
                     fig.add_trace(
                         go.Bar(
                             x=list(df.index),
-                            y=df['Vol']*2//(df['Vol'].max() / df['Price'].max()) ,
+                            y=df['Vol']//(df['Vol'].max() / df['Price'].max()) ,
                             opacity=0.1,
                             name = 'Volume'
                         ))
