@@ -171,7 +171,8 @@ with col2:
                     st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
 
                 with tab2:
-                    pass
+                    fig = px.bar(df.reset_index(), x='Date', y='Vol')
+                    st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
 
                 with tab3:
                     pass
