@@ -188,6 +188,8 @@ with col2:
                 values = [recom, 100 - recom]
 
                 fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.4)])
+                fig.update_traces(marker=dict(colors=['green', 'red']))
+
                 st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
 
 
