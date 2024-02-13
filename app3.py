@@ -189,6 +189,13 @@ with col2:
 
                 fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.4)])
                 fig.update_traces(marker=dict(colors=['#006400', '#E23F44']))
+                fig.update_layout(
+                                     font=dict(
+                                         size=18,  # Set the font size here
+                                     )
+                                 )
+                
+
 
                 st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
 
