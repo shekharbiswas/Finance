@@ -186,40 +186,40 @@ with col2:
 
 
 
-                df = yf.download(
-                        tickers = chosen_stocks,
-                        start=s_date1,
-                        #end=date.today().replace(day=2),
-                        end = e_date1,
-                        interval = "1d",
-                        threads=True,
-                        group_by = 'ticker'
-                    )
+                #df = yf.download(
+                #        tickers = chosen_stocks,
+                #        start=s_date1,
+                #        #end=date.today().replace(day=2),
+                #        end = e_date1,
+                #        interval = "1d",
+                #        threads=True,
+                #        group_by = 'ticker'
+                #    )
 
 
-                # Monthly shows data of last day of month
-                    
-                df = df[['Adj Close', 'Volume']]
-                df.columns = ['Price', 'Vol']
+                ## Monthly shows data of last day of month
+                #    
+                #df = df[['Adj Close', 'Volume']]
+                #df.columns = ['Price', 'Vol']
 
 
-                # resample 
+                ## resample 
 
-                #df = df.resample('5d').mean()
-                #nifty = nifty.resample('5d').mean()
-
-
-
-                df['P5'] = df['Price'].shift(5)
-                df['V5'] = df['Vol'].shift(5)
-
-                df['PC'] = df['Price'] - df['P5']
-                df['VC'] = df['Vol'] - df['V5']
+                ##df = df.resample('5d').mean()
+                ##nifty = nifty.resample('5d').mean()
 
 
-                df['N50'] = nifty['Adj Close']
 
-                df = df[df['Vol'] != 0]
+                #df['P5'] = df['Price'].shift(5)
+                #df['V5'] = df['Vol'].shift(5)
+
+                #df['PC'] = df['Price'] - df['P5']
+                #df['VC'] = df['Vol'] - df['V5']
+
+
+                #df['N50'] = nifty['Adj Close']
+
+                #df = df[df['Vol'] != 0]
 
 
 
