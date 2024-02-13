@@ -27,7 +27,7 @@ with col2:
     x = list(pd.unique(nse_df['Symbol'] ))
     x.remove('HDFC.NS')
 
-    code = st.select("Select the NSE Stock CODE :sunglasses:", x)
+    code = st.selectbox("Select the NSE Stock CODE :sunglasses:", x)
     st.write('You selected:', code)
 
     chosen_stocks = code
