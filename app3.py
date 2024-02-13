@@ -179,6 +179,19 @@ with col2:
                     pass
 
 
+                df = df.dropna()
+
+                l1 = list(df.resample('1w')['VC'].mean().tail(5))
+                recom = round(sum([i for i in l1 if i >= 0 ]) / sum([abs(number) for number in l1]), 2)*100
+
+                labels = ['Recommend Buying - Positive','Recommend not buying - Negative']
+                values = [recom, 100 - recom]
+
+                fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.4)])
+                st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
+
+
+
 
 
 
