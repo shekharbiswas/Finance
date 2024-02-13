@@ -125,22 +125,44 @@ with col2:
                     fig.add_trace(
                         go.Scatter(
                             x=list(df.index),
-                            y=df['Price'],
-                            name = 'Price'
+                            y=df['Price']
                         ))
 
                     fig.add_trace(
                         go.Bar(
                             x=list(df.index),
-                            y=df['Vol']//(df['Vol'].max() / df['Price'].max()) ,
-                            opacity=0.1,
-                            name = 'Volume'
+                            y=df['Vol']//(df['Vol'].max() / df['Price'].max()) + df['Price'].min()  ,
+                            opacity=0.1
                         ))
+
+                    fig.update_layout(yaxis={"range":[df['Price'].min(),df['Price'].min() + df['Price'].max()]})
+
+
+
+                    #fig.show()
+
+
+
+                    
+                    #fig.add_trace(
+                    #    go.Scatter(
+                    #        x=list(df.index),
+                    #        y=df['Price'],
+                    #        name = 'Price'
+                    #    ))
+
+                    #fig.add_trace(
+                    #    go.Bar(
+                    #        x=list(df.index),
+                    #        y=df['Vol']//(df['Vol'].max() / df['Price'].max()) ,
+                    #        opacity=0.1,
+                    #        name = 'Volume'
+                    #    ))
 
                     #fig = px.line(df.reset_index() , x='Date', y='Price', markers=True)
                     #fig.show()
 
-                    fig.update_layout(height=700)
+                    #fig.update_layout(height=600)
                     #fig.update_traces( hovertemplate=None)
                     #fig.update_layout(hovermode="x")
 
