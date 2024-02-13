@@ -133,7 +133,7 @@ with col2:
                         go.Bar(
                             x=list(df.index),
                             y=df['Vol']//(df['Vol'].max() / (df['Price'].max() -df['Price'].min())) + df['Price'].min()  ,
-                            opacity=0.1,
+                            opacity=0.2,
                             name = 'Volume',
                             hoverinfo='none'
                         ))
