@@ -63,7 +63,7 @@ with col2:
 
                 #st.write('7 days')
 
-                with st.spinner('Loading data...'):
+                with st.spinner('Analyzing data...'):
                     data = yf.download(
                         tickers = tickers,
                         start=s_date,
