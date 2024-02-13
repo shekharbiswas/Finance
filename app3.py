@@ -125,14 +125,16 @@ with col2:
                     fig.add_trace(
                         go.Scatter(
                             x=list(df.index),
-                            y=df['Price']
+                            y=df['Price'],
+                            name = 'Price'
                         ))
 
                     fig.add_trace(
                         go.Bar(
                             x=list(df.index),
                             y=df['Vol']//(df['Vol'].max() / df['Price'].max()) ,
-                            opacity=0.1
+                            opacity=0.1,
+                            name = 'Volume'
                         ))
 
                     #fig = px.line(df.reset_index() , x='Date', y='Price', markers=True)
