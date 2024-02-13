@@ -113,7 +113,7 @@ with col2:
 
                 df = df[df['Vol'] != 0]
 
-                tab1, tab2, tab3= st.tabs(["📈 Chart", "🗃 Data", "📈 Chart"])
+                tab1, tab2, tab3= st.tabs(["📈 Chart", "📈 Vol Chart", "🗃 Data"])
 
 
                 with tab1:
