@@ -179,6 +179,50 @@ with col2:
                     pass
 
 
+
+
+                s_date1 = c_start.strftime('%Y-%m-%d')
+                e_date1 = c_end.strftime('%Y-%m-%d')
+
+
+
+                df = yf.download(
+                        tickers = chosen_stocks,
+                        start=s_date1,
+                        #end=date.today().replace(day=2),
+                        end = e_date1,
+                        interval = "1d",
+                        threads=True,
+                        group_by = 'ticker'
+                    )
+
+
+                # Monthly shows data of last day of month
+                    
+                df = df[['Adj Close', 'Volume']]
+                df.columns = ['Price', 'Vol']
+
+
+                # resample 
+
+                #df = df.resample('5d').mean()
+                #nifty = nifty.resample('5d').mean()
+
+
+
+                df['P5'] = df['Price'].shift(5)
+                df['V5'] = df['Vol'].shift(5)
+
+                df['PC'] = df['Price'] - df['P5']
+                df['VC'] = df['Vol'] - df['V5']
+
+
+                df['N50'] = nifty['Adj Close']
+
+                df = df[df['Vol'] != 0]
+
+
+
                 df = df.dropna()
 
                 l1 = list(df.resample('1w')['VC'].mean().tail(5))
