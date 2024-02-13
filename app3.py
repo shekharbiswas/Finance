@@ -137,7 +137,7 @@ with col2:
                             name = 'Volume'
                         ))
 
-                    fig.update_layout(yaxis={"range":[df['Price'].min(),df['Price'].min() + df['Price'].max()]})
+                    #fig.update_layout(yaxis={"range":[df['Price'].min(),df['Price'].min() + df['Price'].max()]})
 
 
 
