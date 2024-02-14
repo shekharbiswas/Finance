@@ -84,7 +84,7 @@ with col2:
 
 
 
-    st.title("Analysis Stocks - NSE :: " + str(code ))
+    st.title("Analysis Stocks - NSE :: " + str(code.split('.')[0] ))
 
     st.header('Check the public sentiment before investing at your own risk', divider='rainbow')
 
