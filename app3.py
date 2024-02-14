@@ -181,26 +181,30 @@ with col2:
 
 
 
-                s_date1 = c_start.strftime('%Y-%m-%d')
-                e_date1 = c_end.strftime('%Y-%m-%d')
+
+                today = datetime.datetime.now()
+                pred_day = today - datetime.timedelta(days=30)
+
+                today = today.strftime('%Y-%m-%d')
+                pred_day = pred_day.strftime('%Y-%m-%d')
 
 
 
-                #df = yf.download(
-                #        tickers = chosen_stocks,
-                #        start=s_date1,
-                #        #end=date.today().replace(day=2),
-                #        end = e_date1,
-                #        interval = "1d",
-                #        threads=True,
-                #        group_by = 'ticker'
-                #    )
+                df = yf.download(
+                        tickers = chosen_stocks,
+                        start=pred_day,
+                        #end=date.today().replace(day=2),
+                        end = today,
+                        interval = "1d",
+                        threads=True,
+                        group_by = 'ticker'
+                    )
 
 
                 ## Monthly shows data of last day of month
                 #    
-                #df = df[['Adj Close', 'Volume']]
-                #df.columns = ['Price', 'Vol']
+                df = df[['Adj Close', 'Volume']]
+                df.columns = ['Price', 'Vol']
 
 
                 ## resample 
@@ -210,16 +214,16 @@ with col2:
 
 
 
-                #df['P5'] = df['Price'].shift(5)
-                #df['V5'] = df['Vol'].shift(5)
+                df['P5'] = df['Price'].shift(5)
+                df['V5'] = df['Vol'].shift(5)
 
-                #df['PC'] = df['Price'] - df['P5']
-                #df['VC'] = df['Vol'] - df['V5']
+                df['PC'] = df['Price'] - df['P5']
+                df['VC'] = df['Vol'] - df['V5']
 
 
-                #df['N50'] = nifty['Adj Close']
+                df['N50'] = nifty['Adj Close']
 
-                #df = df[df['Vol'] != 0]
+                df = df[df['Vol'] != 0]
 
 
 
@@ -231,11 +235,11 @@ with col2:
                 labels = ['Recommend','No Recommend']
                 values = [recom, 100 - recom]
 
-                fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.4)])
+                fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.5)])
                 fig.update_traces(marker=dict(colors=['#006400', '#E23F44']))
                 fig.update_layout(
                                      font=dict(
-                                         size=25,  # Set the font size here
+                                         size=30,  # Set the font size here
                                      )
                                  )
                 
