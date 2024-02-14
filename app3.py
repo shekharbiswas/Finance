@@ -183,7 +183,7 @@ with col2:
 
 
                 today = datetime.datetime.now()
-                pred_day = today - datetime.timedelta(days=30)
+                pred_day = today - datetime.timedelta(days=45)
 
                 today = today.strftime('%Y-%m-%d')
                 pred_day = pred_day.strftime('%Y-%m-%d')
