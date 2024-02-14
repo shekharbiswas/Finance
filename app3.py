@@ -141,37 +141,6 @@ with col2:
                     fig.update_layout(yaxis={"range":[df['Price'].min(), df['Price'].max()]})
                     fig.update_layout(clickmode='none')
 
-
-
-                    #fig.show()
-
-                    # this is a space
-
-
-
-                    
-                    #fig.add_trace(
-                    #    go.Scatter(
-                    #        x=list(df.index),
-                    #        y=df['Price'],
-                    #        name = 'Price'
-                    #    ))
-
-                    #fig.add_trace(
-                    #    go.Bar(
-                    #        x=list(df.index),
-                    #        y=df['Vol']//(df['Vol'].max() / df['Price'].max()) ,
-                    #        opacity=0.1,
-                    #        name = 'Volume'
-                    #    ))
-
-                    #fig = px.line(df.reset_index() , x='Date', y='Price', markers=True)
-                    #fig.show()
-
-                    #fig.update_layout(height=600)
-                    #fig.update_traces( hovertemplate=None)
-                    #fig.update_layout(hovermode="x")
-
                     st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
 
                 with tab2:
