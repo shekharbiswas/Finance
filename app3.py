@@ -139,6 +139,7 @@ with col2:
                         ))
 
                     fig.update_layout(yaxis={"range":[df['Price'].min(), df['Price'].max()]})
+                    fig.update_layout(clickmode='none')
 
 
 
