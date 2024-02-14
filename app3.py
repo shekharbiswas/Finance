@@ -50,7 +50,7 @@ def recom_calculate():
     df1['PC'] = df1['Price'] - df1['P5']
     df1['VC'] = df1['Vol'] - df1['V5']
 
-    df1['N50'] = nifty['Adj Close']
+    #df1['N50'] = nifty['Adj Close']
 
     df1 = df1.dropna()
 
