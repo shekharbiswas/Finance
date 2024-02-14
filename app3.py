@@ -92,7 +92,7 @@ with col2:
     #st.subheader('The date range should be at least 1 month')
 
     today = datetime.datetime.now()
-    window_day = today - datetime.timedelta(days=30)
+    window_day = today - datetime.timedelta(days=90)
     c_start = datetime.datetime.now() - datetime.timedelta(days=730)
     c_end = datetime.datetime.today()
 
