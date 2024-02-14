@@ -190,7 +190,7 @@ with col2:
 
 
 
-                df = yf.download(
+                df1 = yf.download(
                         tickers = chosen_stocks,
                         start=pred_day,
                         #end=date.today().replace(day=2),
@@ -203,8 +203,8 @@ with col2:
 
                 ## Monthly shows data of last day of month
                 #    
-                df = df[['Adj Close', 'Volume']]
-                df.columns = ['Price', 'Vol']
+                df1 = df1[['Adj Close', 'Volume']]
+                df1.columns = ['Price', 'Vol']
 
 
                 ## resample 
@@ -214,22 +214,22 @@ with col2:
 
 
 
-                df['P5'] = df['Price'].shift(5)
-                df['V5'] = df['Vol'].shift(5)
+                df1['P5'] = df1['Price'].shift(5)
+                df1['V5'] = df1['Vol'].shift(5)
 
-                df['PC'] = df['Price'] - df['P5']
-                df['VC'] = df['Vol'] - df['V5']
-
-
-                df['N50'] = nifty['Adj Close']
-
-                df = df[df['Vol'] != 0]
+                df1['PC'] = df1['Price'] - df1['P5']
+                df1['VC'] = df1['Vol'] - df1['V5']
 
 
+                df1['N50'] = nifty['Adj Close']
 
-                df = df.dropna()
+                df1 = df1[df1['Vol'] != 0]
 
-                l1 = list(df.resample('1w')['VC'].mean().tail(5))
+
+
+                df1 = df1.dropna()
+
+                l1 = list(df1.resample('1w')['VC'].mean().tail(5))
                 recom = round(sum([i for i in l1 if i >= 0 ]) / sum([abs(number) for number in l1]), 2)*100
 
                 labels = ['Recommend','No Recommend']
