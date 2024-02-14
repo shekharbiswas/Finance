@@ -209,6 +209,8 @@ with col2:
                 df1 = df1[['Adj Close', 'Volume']]
                 df1.columns = ['Price', 'Vol']
 
+                df1 = df1[df1['Vol'] != 0]
+
 
                 ## resample 
 
@@ -226,7 +228,7 @@ with col2:
 
                 df1['N50'] = nifty['Adj Close']
 
-                df1 = df1[df1['Vol'] != 0]
+                
 
 
 
