@@ -93,7 +93,7 @@ with col2:
 
     today = datetime.datetime.now()
     window_day = today - datetime.timedelta(days=90)
-    c_start = datetime.datetime.now() - datetime.timedelta(days=730)
+    c_start = datetime.datetime.now() - datetime.timedelta(days=2920)
     c_end = datetime.datetime.today()
 
     d = st.date_input(
