@@ -139,7 +139,10 @@ with col2:
                         ))
 
                     fig.update_layout(yaxis={"range":[df['Price'].min(), df['Price'].max()]})
-                    fig.update_layout(clickmode='none')
+                    fig.layout.xaxis.fixedrange = True
+                    fig.layout.yaxis.fixedrange = True
+
+                    #fig.update_layout(clickmode='none')
 
                     st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
 
