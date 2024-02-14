@@ -231,6 +231,8 @@ with col2:
 
                 df1 = df1.dropna()
 
+                st.dataframe(df1)
+
                 l1 = []
 
                 l1 = list(df1.resample('1w')['VC'].mean().tail(5))
