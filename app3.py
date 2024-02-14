@@ -19,7 +19,7 @@ st.set_page_config(
 col1, col2, col3 = st.columns([1, 3, 1])
 
 
-def recom_calculate():
+def recom_calculate(chosen_stocks):
     current_date = datetime.datetime.now()
                 # 5 weeks
     pred_day = current_date - datetime.timedelta(days=35)
@@ -77,6 +77,9 @@ with col2:
     st.write('You selected:', code)
 
     chosen_stocks = code
+    
+    recom = recom_calculate(chosen_stocks)
+
 
 
 
@@ -101,7 +104,7 @@ with col2:
         format="DD.MM.YYYY",
     )
 
-    recom = recom_calculate()
+    
 
     try:
         if (d[0] and d[1]):
