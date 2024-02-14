@@ -171,7 +171,7 @@ with col2:
 
                     
                 with tab3:
-                    fig = px.bar(df.reset_index() , x='Date', y='Vol', markers=True)
+                    fig = px.bar(df.reset_index() , x='Date', y='Vol')
                     st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
 
 
