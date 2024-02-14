@@ -230,6 +230,7 @@ with col2:
                 df1 = df1.dropna()
 
                 l1 = list(df1.resample('1w')['VC'].mean().tail(5))
+                st.write(l1)
                 recom = round(sum([i for i in l1 if i >= 0 ]) / sum([abs(number) for number in l1]), 2)*100
 
                 labels = ['Recommend','No Recommend']
