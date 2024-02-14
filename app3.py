@@ -182,10 +182,10 @@ with col2:
 
 
 
-                today = datetime.datetime.now()
-                pred_day = today - datetime.timedelta(days=45)
+                current_date = datetime.datetime.now()
+                pred_day = current_date - datetime.timedelta(days=45)
 
-                today = today.strftime('%Y-%m-%d')
+                current_date = current_date.strftime('%Y-%m-%d')
                 pred_day = pred_day.strftime('%Y-%m-%d')
 
 
@@ -194,7 +194,7 @@ with col2:
                         tickers = chosen_stocks,
                         start=pred_day,
                         #end=date.today().replace(day=2),
-                        end = today,
+                        end = current_date,
                         interval = "1d",
                         threads=True,
                         group_by = 'ticker'
