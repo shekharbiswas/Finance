@@ -89,7 +89,7 @@ with col2:
     st.header('Check the public sentiment before investing at your own risk', divider='rainbow')
 
 
-    st.subheader('The date range should be at least 1 month')
+    #st.subheader('The date range should be at least 1 month')
 
     today = datetime.datetime.now()
     window_day = today - datetime.timedelta(days=30)
