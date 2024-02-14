@@ -84,9 +84,9 @@ with col2:
 
 
 
-    st.title("Analysis Stocks :: " + str(code.split('.')[0] ))
+    st.subheader("Analysis Stocks :: " + str(code.split('.')[0] ), divider='rainbow')
 
-    st.subheader('Study before Investing', divider='rainbow')
+    #st.subheader('Study before Investing', divider='rainbow')
 
 
     #st.subheader('The date range should be at least 1 month')
