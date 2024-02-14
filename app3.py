@@ -232,13 +232,24 @@ with col2:
                 # show recommenndation chart
 
                 labels = ['Recommend','No Recommend']
-                values = [recom, 100 - recom]
+                
+
+                if recom >= 95:
+                    values = [95, 5]
+
+                elif recom <= 5:
+                    values = [5, 95]
+                
+                else:
+                    values = [recom, 100 - recom]
+
+
 
                 fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.5)])
                 fig.update_traces(marker=dict(colors=['#006400', '#E23F44']))
                 fig.update_layout(
                                      font=dict(
-                                         size=30,  # Set the font size here
+                                         size=25,  # Set the font size here
                                      )
                                  )
                 
