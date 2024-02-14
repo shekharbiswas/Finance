@@ -199,6 +199,8 @@ with col2:
                         threads=True,
                         group_by = 'ticker'
                     )
+                
+                st.dataframe(df1)
 
 
                 ## Monthly shows data of last day of month
