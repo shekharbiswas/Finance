@@ -49,7 +49,7 @@ with col2:
 
     d = st.date_input(
         "Select a Time Frame ( >= 30 days ) ",
-        (window_day, today),
+        (window_day, today.copy()),
         c_start,
         c_end,
         format="DD.MM.YYYY",
