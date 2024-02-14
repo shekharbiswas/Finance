@@ -113,7 +113,7 @@ with col2:
 
                 df = df[df['Vol'] != 0]
 
-                tab1, tab2, tab3= st.tabs(["📈 Chart", "📈 Vol Chart", "🗃 Data"])
+                tab1, tab2, tab3= st.tabs(["📈 Chart", "📈 Interactive Chart", "📈 Interactive Vol Chart", "🗃 Data"])
 
 
                 with tab1:
@@ -175,9 +175,32 @@ with col2:
                     st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
 
                 with tab2:
-                    fig = px.bar(df.reset_index(), x='Date', y='Vol')
-                    st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
+                    
+                    import plotly.graph_objects as go
 
+                    fig = go.Figure()
+
+                    fig.add_trace(
+                        go.Scatter(
+                            x=list(df.index),
+                            y=df['Price'],
+                            name = 'Price'
+                        ))
+
+                    fig.add_trace(
+                        go.Bar(
+                            x=list(df.index),
+                            y=df['Vol']//(df['Vol'].max() / (df['Price'].max() -df['Price'].min())) + df['Price'].min()  ,
+                            opacity=0.2,
+                            name = 'Volume',
+                            hoverinfo='none'
+                        ))
+
+                    fig.update_layout(yaxis={"range":[df['Price'].min(), df['Price'].max()]})
+                    st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
+                
+
+                    
                 with tab3:
                     pass
 
