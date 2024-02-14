@@ -163,7 +163,7 @@ with col2:
 
                 df = df[df['Vol'] != 0]
 
-                tab1, tab2, tab3 = st.tabs(["📈 Chart", "📈 Interactive Chart", "📈 Interactive Vol Chart"])
+                tab1, tab2, tab3 = st.tabs(["📈 Chart", "📈 Vol ", "📈 Interactive Chart"])
 
 
                 with tab1:
@@ -197,6 +197,10 @@ with col2:
                     st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
 
                 with tab2:
+                    fig = px.bar(df.reset_index() , x='Date', y='Vol')
+                    st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
+
+                with tab3:
                     
                     import plotly.graph_objects as go
 
@@ -223,9 +227,7 @@ with col2:
                 
 
                     
-                with tab3:
-                    fig = px.bar(df.reset_index() , x='Date', y='Vol')
-                    st.plotly_chart(fig, use_container_width=True, theme= 'streamlit')
+                
 
 
 
