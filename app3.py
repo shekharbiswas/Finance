@@ -234,11 +234,11 @@ with col2:
                 labels = ['Recommend','No Recommend']
                 
 
-                if recom >= 95:
-                    values = [95, 5]
+                if recom >= 80:
+                    values = [80, 20]
 
-                elif recom <= 5:
-                    values = [5, 95]
+                elif recom <= 20:
+                    values = [20, 80]
                 
                 else:
                     values = [recom, 100 - recom]
