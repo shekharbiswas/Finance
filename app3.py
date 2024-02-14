@@ -183,7 +183,8 @@ with col2:
 
 
                 current_date = datetime.datetime.now()
-                pred_day = current_date - datetime.timedelta(days=45)
+                # 5 weeks
+                pred_day = current_date - datetime.timedelta(days=37)
 
                 current_date = current_date.strftime('%Y-%m-%d')
                 pred_day = pred_day.strftime('%Y-%m-%d')
