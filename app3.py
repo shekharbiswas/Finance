@@ -18,6 +18,52 @@ st.set_page_config(
 
 col1, col2, col3 = st.columns([1, 3, 1])
 
+
+def recom_calculate():
+    current_date = datetime.datetime.now()
+                # 5 weeks
+    pred_day = current_date - datetime.timedelta(days=35)
+
+    current_date = current_date.strftime('%Y-%m-%d')
+    pred_day = pred_day.strftime('%Y-%m-%d')
+
+    df1 = yf.download(
+                    tickers = chosen_stocks,
+                    start=pred_day,
+                    #end=date.today().replace(day=2),
+                    end = current_date,
+                    interval = "1d",
+                    threads=True,
+                    group_by = 'ticker'
+                )
+                
+    df1 = df1[['Adj Close', 'Volume']]
+    df1.columns = ['Price', 'Vol']
+
+    df1 = df1[df1['Vol'] != 0]
+
+
+
+    df1['P5'] = df1['Price'].shift(5)
+    df1['V5'] = df1['Vol'].shift(5)
+
+    df1['PC'] = df1['Price'] - df1['P5']
+    df1['VC'] = df1['Vol'] - df1['V5']
+
+    df1['N50'] = nifty['Adj Close']
+
+    df1 = df1.dropna()
+
+    #st.dataframe(df1)
+
+    l1 = []
+
+    l1 = list(df1.resample('7D')['VC'].mean().tail(5))
+    #st.write(l1)
+    recom = round(sum([i for i in l1 if i >= 0 ]) / sum([abs(number) for number in l1]), 2)*100
+    return recom
+
+
 with col2:
     nse_df = pd.read_excel('nse_data.xlsx')
     nse_df = nse_df.head(500)
@@ -55,7 +101,8 @@ with col2:
         format="DD.MM.YYYY",
     )
 
-    
+    recom = recom_calculate()
+
     try:
         if (d[0] and d[1]):
             s_date = d[0].strftime('%Y-%m-%d')
@@ -179,68 +226,7 @@ with col2:
 
 
 
-
-
-
-                current_date = datetime.datetime.now()
-                # 5 weeks
-                pred_day = current_date - datetime.timedelta(days=35)
-
-                current_date = current_date.strftime('%Y-%m-%d')
-                pred_day = pred_day.strftime('%Y-%m-%d')
-
-
-
-                df1 = yf.download(
-                        tickers = chosen_stocks,
-                        start=pred_day,
-                        #end=date.today().replace(day=2),
-                        end = current_date,
-                        interval = "1d",
-                        threads=True,
-                        group_by = 'ticker'
-                    )
-                
-                st.dataframe(df1)
-
-
-                ## Monthly shows data of last day of month
-                #    
-                df1 = df1[['Adj Close', 'Volume']]
-                df1.columns = ['Price', 'Vol']
-
-                df1 = df1[df1['Vol'] != 0]
-
-
-                ## resample 
-
-                ##df = df.resample('5d').mean()
-                ##nifty = nifty.resample('5d').mean()
-
-
-
-                df1['P5'] = df1['Price'].shift(5)
-                df1['V5'] = df1['Vol'].shift(5)
-
-                df1['PC'] = df1['Price'] - df1['P5']
-                df1['VC'] = df1['Vol'] - df1['V5']
-
-
-                df1['N50'] = nifty['Adj Close']
-
-                
-
-
-
-                df1 = df1.dropna()
-
-                st.dataframe(df1)
-
-                l1 = []
-
-                l1 = list(df1.resample('7D')['VC'].mean().tail(5))
-                st.write(l1)
-                recom = round(sum([i for i in l1 if i >= 0 ]) / sum([abs(number) for number in l1]), 2)*100
+                # show recommenndation chart
 
                 labels = ['Recommend','No Recommend']
                 values = [recom, 100 - recom]
