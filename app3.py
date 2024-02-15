@@ -66,7 +66,7 @@ def recom_calculate(chosen_stocks):
 
 with col2:
     nse_df = pd.read_excel('nse_data.xlsx')
-    nse_df = nse_df.head(500)
+    nse_df = nse_df.head(1500)
     
     nse_df['Symbol'] = [str(s) + '.NS' for s in nse_df['Symbol']]
 
@@ -93,7 +93,7 @@ with col2:
 
     today = datetime.datetime.now()
     window_day = today - datetime.timedelta(days=90)
-    c_start = datetime.datetime.now() - datetime.timedelta(days=730)
+    c_start = datetime.datetime.now() - datetime.timedelta(days=3650)
     c_end = datetime.datetime.today()
 
     d = st.date_input(
